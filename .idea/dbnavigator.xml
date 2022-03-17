@@ -32,10 +32,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="e32c8d47-4ad9-4088-9ee9-2b256a9e8139" object-ref="consoles/MySQLConnection" />
-      <object connection-id="e32c8d47-4ad9-4088-9ee9-2b256a9e8139" object-ref="schemas/iotbay/tables/item" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="e32c8d47-4ad9-4088-9ee9-2b256a9e8139" />
