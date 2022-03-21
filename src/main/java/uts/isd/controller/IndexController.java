@@ -1,4 +1,4 @@
-package com.uts.iotbay.controller;
+package uts.isd.controller;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

@@ -1,4 +1,4 @@
-package com.uts.iotbay.model;
+package uts.isd.model;
 
 public class User {
     private int id;

@@ -42,7 +42,7 @@
 </header>
 <main role="main">
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
-
+        <div style="margin-right: 10%; margin-left: 10%">
         <div class="row row-cols-1 row-cols-md-3" style="margin: 40px">
             <div class="col mb-4">
                 <div class="card" style="line-height: inherit">
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
 
         <%--        content goes here--%>
 
