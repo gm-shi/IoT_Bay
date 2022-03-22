@@ -31,58 +31,58 @@
 </header>
 <main role="main">
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
-        <form>
+        <form action="welcome.jsp" method="post">
                 <div class="form-group" >
                     <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" id="inputEmail4" required>
+                    <input type="email" name="email" class="form-control" id="inputEmail4" required>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword4">Password</label>
-                    <input type="password" class="form-control" id="inputPassword4" required>
+                    <input type="password" name="password" class="form-control" id="inputPassword4" required>
                 </div>
             <div class="form-group">
                 <label for="inputUserName">User Name</label>
-                <input type="text" class="form-control" id="inputUserName" required>
+                <input type="text" name="userName" class="form-control" id="inputUserName" required>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputFirstName">First Name</label>
-                    <input type="text" class="form-control" id="inputFirstName" required>
+                    <input type="text" name="firstName" class="form-control" id="inputFirstName" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputLastName">Last Name</label>
-                    <input type="text" class="form-control" id="inputLastName" required>
+                    <input type="text" name="lastName" class="form-control" id="inputLastName" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputUserDOB">Date of Birth</label>
-                <input type="date" class="form-control" id="inputUserDOB" required>
+                <input type="date" name="dob" class="form-control" id="inputUserDOB" required>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                <input type="text" name="address1" class="form-control" id="inputAddress" placeholder="1234 Main St">
             </div>
             <div class="form-group">
                 <label for="inputAddress2">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                <input type="text" name="address2" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity">
+                    <input type="text" name="city" class="form-control" id="inputCity">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="inputCity">State</label>
-                    <input type="text" class="form-control" id="inputState">
+                    <label for="inputState">State</label>
+                    <input type="text" name="state" class="form-control" id="inputState">
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
+                    <input type="text" name="zip" class="form-control" id="inputZip">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputUserPhone">Phone Number</label>
-                <input type="text" class="form-control" pattern="[04]{2}[0-9]{8}" value="04"  id="inputUserPhone" title=" Phone number with 04 and remaing 8 digit with 0-9" required>
+                <input type="text" name="phone" class="form-control" pattern="[04]{2}[0-9]{8}" value="04"  id="inputUserPhone" title=" Phone number with 04 and remaing 8 digit with 0-9" required>
             </div>
             <div style="margin-bottom: 20px">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -90,7 +90,11 @@
                     Agree to terms and conditions
                 </label>
             </div>
-            <button type="submit" onclick="window.location='index.jsp'; handleSignUp" class="btn btn-primary">Sign up</button>
+            <div>
+                <button style="margin: 20px" type="submit"  class="btn btn-primary">Sign up</button>
+                <a href="index.jsp" class="btn btn-danger">Cancel</a>
+            </div>
+
         </form>
     </section>
 </main>
