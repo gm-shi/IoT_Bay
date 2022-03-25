@@ -24,6 +24,7 @@
         </div>
     </div>
 </header>
+
 <main role="main">
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
         <h1 class="display-2">IoT Bay</h1>
@@ -31,16 +32,16 @@
             <p class="lead" style="color: slategrey">A well-known IoT devices online shop based in ISD.</p>
         <div class="card" style="width: 600px; height:400px; margin: 20px; }">
             <div class="card-body" style="display: flex;flex-direction: column; justify-content: space-between">
-                <form>
+                <form method="post" action="loginHandler.jsp">
                     <div class="form-group" style="margin-top: 40px">
                         <label for="exampleInputEmail1" style="text-align: left; display: flex;">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" name="account" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label style="text-align: left; display: flex;" for="exampleInputPassword1">Password</label>
-                        <input  type="password" class="form-control" id="exampleInputPassword1">
+                        <input  type="password" class="form-control" name="passwd" id="exampleInputPassword1">
                     </div>
-                    <button type="submit" class="btn btn-success btn-block" onclick="">Login</button>
+                    <button type="submit" class="btn btn-success btn-block">Login</button>
                 </form>
                 <button class="btn btn-primary" onclick="window.location='signUp.jsp'">Sign up</button>
                 <button class="btn btn-link" onclick="window.location='main.jsp'">Continue as guest</button>

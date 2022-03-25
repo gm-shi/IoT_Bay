@@ -29,6 +29,7 @@
         </div>
     </div>
 </header>
+
 <main role="main">
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
         <form action="welcome.jsp" method="post">

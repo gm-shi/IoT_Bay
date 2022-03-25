@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
+<%
+    if(session.getAttribute("name")== null){
+        session.setAttribute("name", "Guest");
+    }
+%>
 <header>
     <div class="navbar navbar-light shadow-sm" style="background-color: steelblue">
         <div class="container d-flex justify-content-between">
@@ -29,13 +34,13 @@
         </div>
         <div class="dropdown" >
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                $userName
+                ${name}
             </button>
             <div class="dropdown-menu-right dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Personal Information</a>
                 <a class="dropdown-item" href="#">Chart</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Log out</a>
+                <a class="dropdown-item" href="handleLogout.jsp" >Log out</a>
             </div>
         </div>
     </div>

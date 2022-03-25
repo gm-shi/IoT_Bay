@@ -32,23 +32,30 @@
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
 
     <%
-    String name = request.getParameter("userName");
-    String email = request.getParameter("email");
-    String password = request.getParameter("password");
-    String dob = request.getParameter("dob");
-    String fistName = request.getParameter("firstName");
-    String lastName = request.getParameter("lastName");
-    String phoneNumber = request.getParameter("phone");
+        String name = request.getParameter("userName");
+        session.setAttribute("name", name);
+        String email = request.getParameter("email");
+        session.setAttribute("email", email);
+        String password = request.getParameter("password");
+        session.setAttribute("password", password);
+        String dob = request.getParameter("dob");
+        session.setAttribute("dob", dob);
+        String firstName = request.getParameter("firstName");
+        session.setAttribute("firstName", firstName);
+        String lastName = request.getParameter("lastName");
+        session.setAttribute("lastName", lastName);
+        String phoneNumber = request.getParameter("phone");
+        session.setAttribute("phoneNumber", phoneNumber);
 
     %>
     <h1>Welcome <%= name %></h1>
-        <p>Your name is: <%= fistName + lastName%></p>
-        <p>Your email is: <%= email %></p>
-        <p>Your password is: <%= password %></p>
-        <p>Your Date of birth is: <%= dob %></p>
-        <p>Your Phone number is: <%= phoneNumber %></p>
+        <p>Your name is: <%= session.getAttribute("firstName") + " " + session.getAttribute("lastName")%></p>
+        <p>Your email is: <%= session.getAttribute("email") %></p>
+        <p>Your password is: <%= session.getAttribute("password") %></p>
+        <p>Your Date of birth is: <%= session.getAttribute("dob") %></p>
+        <p>Your Phone number is: <%= session.getAttribute("phoneNumber") %></p>
         <%--        content goes here--%>
-
+ <a href="index.jsp"  class="btn btn-success">Login</a>
     </section>
 </main>
 <footer class="text-muted">
