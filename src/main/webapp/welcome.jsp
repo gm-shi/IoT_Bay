@@ -1,4 +1,4 @@
-<%--
+<%@ page import="uts.isd.model.User" %><%--
   Created by IntelliJ IDEA.
   User: sgm49
   Date: 18/03/2022
@@ -32,28 +32,22 @@
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
 
     <%
-        String name = request.getParameter("userName");
-        session.setAttribute("name", name);
-        String email = request.getParameter("email");
-        session.setAttribute("email", email);
-        String password = request.getParameter("password");
-        session.setAttribute("password", password);
-        String dob = request.getParameter("dob");
-        session.setAttribute("dob", dob);
-        String firstName = request.getParameter("firstName");
-        session.setAttribute("firstName", firstName);
-        String lastName = request.getParameter("lastName");
-        session.setAttribute("lastName", lastName);
-        String phoneNumber = request.getParameter("phone");
-        session.setAttribute("phoneNumber", phoneNumber);
-
+        User user = new User();
+        user.setEmail(request.getParameter("email"));
+        user.setUserName(request.getParameter("userName"));
+        user.setPassword(request.getParameter("password"));
+        user.setUserFirstName(request.getParameter("firstName"));
+        user.setUserLastName(request.getParameter("lastName"));
+        user.setDob(request.getParameter("dob"));
+        user.setPhoneNumber(request.getParameter("phone"));
+        session.setAttribute("user", user);
     %>
-    <h1>Welcome <%= name %></h1>
-        <p>Your name is: <%= session.getAttribute("firstName") + " " + session.getAttribute("lastName")%></p>
-        <p>Your email is: <%= session.getAttribute("email") %></p>
-        <p>Your password is: <%= session.getAttribute("password") %></p>
-        <p>Your Date of birth is: <%= session.getAttribute("dob") %></p>
-        <p>Your Phone number is: <%= session.getAttribute("phoneNumber") %></p>
+    <h1>Welcome ${user.userName}</h1>
+        <p>Your name is: ${user.userFirstName} ${user.userLastName}</p>
+        <p>Your email is: ${user.email}</p>
+        <p>Your password is:  ${user.password}</p>
+        <p>Your Date of birth is: ${user.dob}</p>
+        <p>Your Phone number is: ${user.phoneNumber}</p>
         <%--        content goes here--%>
  <a href="index.jsp"  class="btn btn-success">Login</a>
     </section>

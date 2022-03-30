@@ -1,13 +1,30 @@
 package uts.isd.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int id;
-    private String name;
     private String userName;
+    private String userFirstName;
+    private String userLastName;
     private String email;
     private String phoneNumber;
     private int priorityLevel;
     private String password;
+    private String dob;
+    public User(){};
+
+    public User(int id, String userName, String userFirstName, String userLastName, String email, String phoneNumber, int priorityLevel, String password, String dob) {
+        this.id = id;
+        this.userName = userName;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.priorityLevel = priorityLevel;
+        this.password = password;
+        this.dob = dob;
+    }
 
     public int getId() {
         return id;
@@ -17,13 +34,6 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getUserName() {
         return userName;
@@ -63,5 +73,28 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
+    }
+
+    public String getUserLastName() {
+        return userLastName;
+    }
+
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+    public String getDob(){
+        return dob;
     }
 }

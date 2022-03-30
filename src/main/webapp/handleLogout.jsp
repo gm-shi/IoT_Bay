@@ -11,8 +11,7 @@
     <title>Title</title>
 </head>
 <%
-    session.removeAttribute("email");
-    session.removeAttribute("name");
+    session.removeAttribute("user");
     session.invalidate();
     response.sendRedirect("index.jsp");
 %>

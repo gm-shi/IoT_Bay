@@ -1,4 +1,4 @@
-<%--
+<%@ page import="uts.isd.model.User" %><%--
   Created by IntelliJ IDEA.
   User: sgm49
   Date: 18/03/2022
@@ -20,9 +20,12 @@
 </head>
 <body>
 <%
-    if(session.getAttribute("name")== null){
-        session.setAttribute("name", "Guest");
+    String name = "Guest";
+    if(session.getAttribute("user") != null){
+        User user = (User)session.getAttribute("user");
+        name = user.getUserName();
     }
+
 %>
 <header>
     <div class="navbar navbar-light shadow-sm" style="background-color: steelblue">
@@ -34,7 +37,7 @@
         </div>
         <div class="dropdown" >
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                ${name}
+                <%=name%>
             </button>
             <div class="dropdown-menu-right dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Personal Information</a>
