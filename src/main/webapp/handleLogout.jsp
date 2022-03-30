@@ -38,7 +38,7 @@
 
 
 <%--        content goes here--%>
-        <h1> You have successfully lodged out</h1>
+        <h1> You have successfully Loged out</h1>
     <div style="margin-top: 30px">
         <a class="btn btn-outline-primary" href="index.jsp">Back to Login page</a>
 
