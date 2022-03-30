@@ -28,7 +28,7 @@
 
 %>
 <header>
-    <div class="navbar navbar-light shadow-sm" style="background-color: steelblue">
+    <div class="navbar navbar-light shadow-sm" style="background-color: steelblue; flex-wrap: nowrap;">
         <div class="container d-flex justify-content-between">
             <a href="index.jsp" class="navbar-brand d-flex align-items-center">
                 <img style=" width:30px; height: 30px; fill: currentColor;" src="img/shop.png" alt="logo">
