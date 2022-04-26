@@ -34,9 +34,6 @@
 </header>
 <main role="main">
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
-
-
-
 <%--        content goes here--%>
         <h1> You have successfully logged out</h1>
     <div style="margin-top: 30px">
