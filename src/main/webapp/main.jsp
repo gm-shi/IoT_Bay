@@ -43,7 +43,7 @@
                 <a class="dropdown-item" href="#">Personal Information</a>
                 <a class="dropdown-item" href="#">Chart</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="handleLogout.jsp" >Log out</a>
+                <a class="dropdown-item"  href="LogoutController" >Log out</a>
             </div>
         </div>
     </div>

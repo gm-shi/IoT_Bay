@@ -1,4 +1,4 @@
-<%@ page import="uts.isd.model.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: sgm49
   Date: 18/03/2022
@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="ISD Assignment">
     <meta name="author" content="Gongming Shi">
+    <meta http-equiv="refresh" content="3"; url=index.jsp">
     <title>IoTBay - Welcome</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -31,23 +32,10 @@
 <main role="main">
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
 
-    <%
-        User user = new User();
-        user.setEmail(request.getParameter("email"));
-        user.setUserName(request.getParameter("userName"));
-        user.setPassword(request.getParameter("password"));
-        user.setUserFirstName(request.getParameter("firstName"));
-        user.setUserLastName(request.getParameter("lastName"));
-        user.setDob(request.getParameter("dob"));
-        user.setPhoneNumber(request.getParameter("phone"));
-        session.setAttribute("user", user);
-    %>
-    <h1>Welcome ${user.userName}</h1>
-        <p>Your name is: ${user.userFirstName} ${user.userLastName}</p>
-        <p>Your email is: ${user.email}</p>
-        <p>Your password is:  ${user.password}</p>
-        <p>Your Date of birth is: ${user.dob}</p>
-        <p>Your Phone number is: ${user.phoneNumber}</p>
+    <h1>Welcome</h1>
+        <p>Your have successfully registered</p>
+        <p>Will automatically redirect to login page in 3 sec</p>
+<%--        Add timer later--%>
         <%--        content goes here--%>
  <a href="index.jsp"  class="btn btn-success">Login</a>
     </section>

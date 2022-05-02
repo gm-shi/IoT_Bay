@@ -80,7 +80,6 @@ public class UserController extends HttpServlet {
         try {
             userId = userManager.create(user);
         } catch (SQLException throwables) {
-            System.out.println("fail");
             throwables.printStackTrace();
             Helper.alert(res.getWriter(), "fail to Sign up" );
             return;
@@ -92,7 +91,7 @@ public class UserController extends HttpServlet {
             throwables.printStackTrace();
         }
         //change later
-        res.sendRedirect("index.jsp");
+        res.sendRedirect("welcome.jsp");
     }
 
 
