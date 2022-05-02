@@ -5,17 +5,16 @@ import java.sql.SQLException;
 
     public class DB {
         // !adjust these para according to ur setting
-        private String URL = "jdbc:mysql://localhost:3306/";
-        private String db = "iotbay";
-        private String dbUser = "root";
-        private String dbPassword = "123456";
-        private String dbDriver = "com.mysql.cj.jdbc.Driver";
-
-        private Connection conn;
+        protected String URL = "jdbc:mysql://localhost:3306/";
+        protected String db = "iotbay";
+        protected String dbUser = "root";
+        protected String dbPassword = "123456";
+        protected String dbDriver = "com.mysql.cj.jdbc.Driver";
+        protected Connection conn;
 
         public DB() throws SQLException {
             try {
-                Class.forName(this.dbDriver);
+                Class.forName(this.dbDriver).newInstance();
             }
             catch (Exception e) {
                 e.printStackTrace();

@@ -32,7 +32,7 @@
 
 <main role="main">
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
-        <form action="welcome.jsp" method="post">
+        <form  method="post" action="UserController?action=signup">
                 <div class="form-group" >
                     <label for="inputEmail4">Email</label>
                     <input type="email" name="email" class="form-control" id="inputEmail4" required>
@@ -43,16 +43,16 @@
                 </div>
             <div class="form-group">
                 <label for="inputUserName">User Name</label>
-                <input type="text" name="userName" class="form-control" id="inputUserName" required>
+                <input type="text" name="username" class="form-control" id="inputUserName" required>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputFirstName">First Name</label>
-                    <input type="text" name="firstName" class="form-control" id="inputFirstName" required>
+                    <input type="text" name="firstname" class="form-control" id="inputFirstName" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputLastName">Last Name</label>
-                    <input type="text" name="lastName" class="form-control" id="inputLastName" required>
+                    <input type="text" name="lastname" class="form-control" id="inputLastName" required>
                 </div>
             </div>
             <div class="form-group">
@@ -61,11 +61,7 @@
             </div>
             <div class="form-group">
                 <label for="inputAddress">Address</label>
-                <input type="text" name="address1" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="form-group">
-                <label for="inputAddress2">Address 2</label>
-                <input type="text" name="address2" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                <input type="text" name="street" class="form-control" id="inputAddress" placeholder="1234 Main St">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -77,8 +73,8 @@
                     <input type="text" name="state" class="form-control" id="inputState">
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="inputZip">Zip</label>
-                    <input type="text" name="zip" class="form-control" id="inputZip">
+                    <label for="inputPostalCode">Zip</label>
+                    <input type="text" name="postalcode" class="form-control" id="inputPostalCode">
                 </div>
             </div>
             <div class="form-group">
