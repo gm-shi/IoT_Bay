@@ -21,12 +21,13 @@
 </head>
 <body>
 <%
-    String name = "admin";
-    User user = null;
-    if(session.getAttribute("user") != null){
-        user = (User)session.getAttribute("user");
-        name = user.getUserName();
+    String name;
+    User user;
+    if(session.getAttribute("user") == null){
+        response.sendRedirect("index.jsp");
     }
+    user = (User)session.getAttribute("user");
+    name = user.getUserName();
     if(!user.getRole().equalsIgnoreCase("admin") || user.getPriorityLevel() < 10){
         Helper.alert(response.getWriter(), "Invalid Access");
         response.sendRedirect("index.jsp");

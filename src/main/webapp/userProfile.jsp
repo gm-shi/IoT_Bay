@@ -19,12 +19,14 @@
 </head>
 <body>
 <%
-    String name = "Guest";
-    User user = null;
-    if (session.getAttribute("user") != null) {
+    String name;
+    User user;
+    if (session.getAttribute("user") == null){
+        response.sendRedirect("index.jsp");
+    }
         user = (User) session.getAttribute("user");
         name = user.getUserName();
-    }
+
 
 %>
 <header>
@@ -69,7 +71,6 @@
                 <a class="dropdown-item"  href="LogoutController" >Log out</a>
             </div>
         </div>
-    </div>
     </div>
 </header>
 <main role="main">

@@ -6,7 +6,6 @@ import uts.isd.model.dao.UserManager;
 import uts.isd.utils.DB;
 import uts.isd.utils.Helper;
 
-import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class LoginController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String email = req.getParameter("email");
         String passwd = req.getParameter("password");
         if(email == null || !isValidEmailFormat(email)){

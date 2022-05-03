@@ -7,7 +7,7 @@ import java.sql.*;
 
 
 public class UserManager {
-    private DB db;
+    private final DB db;
 
     public UserManager(DB db) {
         this.db = db;

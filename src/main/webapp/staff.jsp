@@ -6,7 +6,7 @@
   Time: 1:03 am
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +21,14 @@
 </head>
 <body>
 <%
-    String name = "none";
-    User user = null;
-    if(session.getAttribute("user") != null){
-        user = (User)session.getAttribute("user");
-        name = user.getUserName();
+    String name;
+    User user;
+    if(session.getAttribute("user") == null){
+        response.sendRedirect("index.jsp");
     }
+    user = (User)session.getAttribute("user");
+    name = user.getUserName();
+
     if(!user.getRole().equalsIgnoreCase("staff")){
         Helper.alert(response.getWriter(), "Invalid Access");
         response.sendRedirect("index.jsp");
@@ -65,7 +67,6 @@
                 <a class="dropdown-item"  href="LogoutController" >Log out</a>
             </div>
         </div>
-    </div>
     </div>
 </header>
 <main role="main">

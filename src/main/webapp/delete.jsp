@@ -19,16 +19,56 @@
 </head>
 <body>
 <%
-    User user = (User) session.getAttribute("user");
+    String name;
+    User user;
+    if(session.getAttribute("user") == null){
+        response.sendRedirect("index.jsp");
+    }
+    user = (User)session.getAttribute("user");
+    name = user.getUserName();
 
 %>
 <header>
-    <div class="navbar navbar-light shadow-sm" style="background-color: steelblue">
+    <div class="navbar navbar-light shadow-sm" style="background-color: steelblue; flex-wrap: nowrap;">
         <div class="container d-flex justify-content-between">
-            <a href="index.jsp" class="navbar-brand d-flex align-items-center">
-                <img style=" width:30px; height: 30px; fill: currentColor;" src="img/shop.png" alt="logo">
-                <strong style="margin-left:5px">IoTBay</strong>
-            </a>
+            <% if (user != null && user.getRole().equalsIgnoreCase("admin"))
+            {
+            %>
+            <a href="admin.jsp" class="navbar-brand d-flex align-items-center">
+                    <%
+                            }
+                            else {
+                %>
+                <a href="main.jsp" class="navbar-brand d-flex align-items-center">
+                    <%
+                        }
+                    %>
+                    <img style=" width:30px; height: 30px; fill: currentColor;" src="img/shop.png" alt="logo">
+                    <strong style="margin-left:5px">IoTBay</strong>
+                </a>
+        </div>
+        <%
+            if (user == null){
+        %>
+        <a class="btn btn-success" style="margin-right: 10px"  href="index.jsp" >Log in</a>
+        <%}%>
+        <div class="dropdown" >
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                <%=name%>
+            </button>
+
+            <div class="dropdown-menu-right dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Chart</a>
+                <%
+                    if (user != null){
+                %>
+                <a class="dropdown-item" href="userProfile.jsp">Personal Information</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item"  href="LogoutController" >Log out</a>
+            </div>
+            <%
+                }
+            %>
         </div>
     </div>
 </header>
@@ -36,18 +76,30 @@
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
 
         <div class="card bg-light mb-auto" style="max-width: 35rem;">
-            <div class="card-header">Confirm to <strong>DELETE</strong></div>
+            <div  class="card-header"><h3>Confirm to <strong>DELETE</strong></h3></div>
             <div class="card-body">
                 <h5 class="card-title">IMPORTANT!</h5>
                 <p class="card-text">This action cannot be undone. This will permanently delete the User <strong><%=user.getUserFirstName() + " " + user.getUserLastName()%></strong></p>
             </div>
-            <p>Please type your email: <strong><%=user.getEmail()%></strong> to confirm.</p>
+            <label for="verifyEmail">Please type your email: <strong><%=user.getEmail()%></strong> to confirm.</label>
             <input type="text" id="verifyEmail" class="form-control" oninput="verifyEmail()">
             <button type="button" id="deleteButton" disabled onclick="handleDelete()" class="btn btn-danger">Delete my account</button>
         </div>
 
         <%--        content goes here--%>
-
+        <div style="text-align: right; margin-top: 50px">
+            <%
+                if (user.getRole().equalsIgnoreCase("admin")){
+            %>
+            <a href="admin.jsp" type="button" class="btn btn-primary">Back to Home</a>
+            <%} else if (user.getRole().equalsIgnoreCase("staff")){
+            %>
+            <a href="staff.jsp" type="button" class="btn btn-primary">Back to Home</a>
+            <%}else {
+            %>
+            <a href="main.jsp" type="button" class="btn btn-primary">Back to Home</a>
+            <%}%>
+        </div>
     </section>
 </main>
 <footer class="text-muted">

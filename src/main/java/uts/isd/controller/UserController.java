@@ -6,7 +6,6 @@ import uts.isd.model.dao.UserManager;
 import uts.isd.utils.DB;
 import uts.isd.utils.Helper;
 
-import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
@@ -31,7 +30,7 @@ public class UserController extends HttpServlet {
 
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String[] queries = req.getQueryString().split("=");
         String query = queries[1].toLowerCase();
         System.out.println(query);
@@ -39,7 +38,7 @@ public class UserController extends HttpServlet {
             case "signup": handleSignUp(req, res); break;
             case "delete": handleDelete(req, res); break;
             case "edit": handleEdit(req, res); break;
-            default: return;
+            default:
         }
     }
 
@@ -96,7 +95,7 @@ public class UserController extends HttpServlet {
 
     private void handleSignUp(HttpServletRequest req, HttpServletResponse res) throws IOException {
         User user = new User();
-        int userId = 0;
+        int userId;
         user.setEmail(req.getParameter("email"));
         user.setPassword(req.getParameter("password"));
         user.setUserName(req.getParameter("username"));
