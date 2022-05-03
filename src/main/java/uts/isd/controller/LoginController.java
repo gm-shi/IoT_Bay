@@ -58,15 +58,20 @@ public class LoginController extends HttpServlet {
             Helper.alert(res.getWriter(), "Wrong Password");
             return;
         }
-        req.getSession().setAttribute("user", user);
-
         try {
             userAccessLogManager.create(user.getId(), "login");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        req.getSession().setAttribute("user", user);
 
-        res.sendRedirect("main.jsp");
+        if(user.getRole().equalsIgnoreCase("staff")){
+            res.sendRedirect("staff.jsp");
+        } else if(user.getRole().equalsIgnoreCase("admin")){
+            res.sendRedirect("admin.jsp");
+        } else{
+            res.sendRedirect("main.jsp");
+        }
     }
 
     private boolean isValidPasswordFormat(String passwd) {

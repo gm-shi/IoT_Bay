@@ -48,7 +48,20 @@ public class UserAccessLogManager{
         }
         return userAccessLogs;
     }
-
+    public ArrayList<UserAccessLog> getUserAccessLogByDate(int userId, String date) throws SQLException {
+        ArrayList<UserAccessLog> userAccessLogs = new ArrayList<UserAccessLog>();
+        String query = "SELECT * FROM user_access_log WHERE user_id = ? AND user_access_time LIKE ?";
+        PreparedStatement statement = conn().prepareStatement(query);
+        statement.setInt(1, userId);
+        statement.setString(2, date + "%");
+        ResultSet resultSet = statement.executeQuery();
+        while(resultSet.next()){
+            userAccessLogs.add(new UserAccessLog((resultSet.getInt("user_id")),
+                    resultSet.getString("user_access_type"),
+                    new Date (resultSet.getTimestamp("user_access_time").getTime())));
+        }
+        return userAccessLogs;
+    }
 
 
 }

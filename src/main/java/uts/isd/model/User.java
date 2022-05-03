@@ -15,7 +15,6 @@ public class User implements Serializable {
     private String password;
     private Date dob;
     private String street;
-    private String suburb;
     private String city;
     private String state;
     private String postalCode;
@@ -27,13 +26,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public String getSuburb() {
-        return suburb;
-    }
 
-    public void setSuburb(String suburb) {
-        this.suburb = suburb;
-    }
 
 
     public String getRole() {
@@ -62,7 +55,7 @@ public class User implements Serializable {
 
     public User(int id, String userName, String userFirstName,
                 String userLastName, String email, String phoneNumber,
-                String password, Date dob, String street, String suburb,
+                String password, Date dob, String street,
                 String city, String state, String postalCode,
                 int priorityLevel, String role, int payment_preference) {
         this.id = id;
@@ -74,7 +67,6 @@ public class User implements Serializable {
         this.password = password;
         this.dob = dob;
         this.street = street;
-        this.suburb = suburb;
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
@@ -207,7 +199,6 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", dob=" + dob +
                 ", street='" + street + '\'' +
-                ", suburb='" + suburb + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", postalCode='" + postalCode + '\'' +

@@ -1,8 +1,10 @@
 package uts.isd.model;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
-public class UserAccessLog {
+public class UserAccessLog implements Serializable {
     private int userID;
     private String userAccessType;
     private Date userAccessTime;
@@ -21,7 +23,8 @@ public class UserAccessLog {
         return userAccessType;
     }
 
-    public Date getUserAccessTime() {
-        return userAccessTime;
+    public String getUserAccessTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormat.format(userAccessTime);
     }
 }

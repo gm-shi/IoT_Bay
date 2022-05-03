@@ -34,18 +34,64 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String[] queries = req.getQueryString().split("=");
         String query = queries[1].toLowerCase();
+        System.out.println(query);
         switch(query){
-            case "signup": handleSignUp(req, res);
-            case "delete": handleDelete(req, res);
-            case "edit": handleEdit(req, res);
+            case "signup": handleSignUp(req, res); break;
+            case "delete": handleDelete(req, res); break;
+            case "edit": handleEdit(req, res); break;
             default: return;
         }
     }
 
-    private void handleEdit(HttpServletRequest req, HttpServletResponse res) {
+
+    private void handleEdit(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        User user =  (User) req.getSession().getAttribute("user");
+        user.setPassword(req.getParameter("password"));
+        user.setUserFirstName(req.getParameter("firstname"));
+        user.setUserLastName(req.getParameter("lastname"));
+        user.setPhoneNumber(req.getParameter("phone"));
+        user.setStreet(req.getParameter("street"));
+        user.setCity(req.getParameter("city"));
+        user.setState(req.getParameter("state"));
+        user.setPostalCode(req.getParameter("postalcode"));
+        if(req.getParameter("priorityLevel") != null){
+            user.setPriorityLevel(Integer.parseInt(req.getParameter("priorityLevel")));
+        } else {
+            user.setPriorityLevel(1);
+        }
+        if(req.getParameter("role") != null) {
+            user.setRole(req.getParameter("role"));
+        } else{
+            user.setRole("customer");
+        }
+        try {
+            user.setDob(dateFormat.parse((req.getParameter("dob"))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try{
+            userManager.update(user);
+            userAccessLogManager.create(user.getId(), "edit profile");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            Helper.alert(res.getWriter(), "fail to update");
+            return;
+        }
+        res.sendRedirect("main.jsp");
     }
 
-    private void handleDelete(HttpServletRequest req, HttpServletResponse res) {
+    private void handleDelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        User user = (User) req.getSession().getAttribute("user");
+        try {
+            userManager.delete(user.getId());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            Helper.alert(res.getWriter(), "fail to delete");
+            return;
+        }
+        req.getSession().removeAttribute("user");
+        req.getSession().invalidate();
+        res.sendRedirect("index.jsp");
     }
 
     private void handleSignUp(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -58,7 +104,6 @@ public class UserController extends HttpServlet {
         user.setUserLastName(req.getParameter("lastname"));
         user.setPhoneNumber(req.getParameter("phone"));
         user.setStreet(req.getParameter("street"));
-        user.setSuburb(req.getParameter("suburb"));
         user.setCity(req.getParameter("city"));
         user.setState(req.getParameter("state"));
         user.setPostalCode(req.getParameter("postalcode"));
@@ -80,8 +125,12 @@ public class UserController extends HttpServlet {
         try {
             userId = userManager.create(user);
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Helper.alert(res.getWriter(), "fail to Sign up" );
+            if (throwables.getErrorCode() == 1062) {
+                Helper.alert(res.getWriter(), "email already exist"); // fix later!!!!!
+            } else {
+                throwables.printStackTrace();
+                Helper.alert(res.getWriter(), "fail to Sign up" );
+            }
             return;
         }
         user.setId(userId);
@@ -90,10 +139,7 @@ public class UserController extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        //change later
         res.sendRedirect("welcome.jsp");
     }
-
-
 
 }

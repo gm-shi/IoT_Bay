@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
     public class DB {
-        // !adjust these para according to ur setting
+        // !adjust these para according to your setting
         protected String URL = "jdbc:mysql://localhost:3306/";
         protected String db = "iotbay";
         protected String dbUser = "root";
@@ -19,8 +19,7 @@ import java.sql.SQLException;
             catch (Exception e) {
                 e.printStackTrace();
             }
-            //add time zone
-            this.conn = DriverManager.getConnection(URL+db+"?serverTimezone=UTC", dbUser, dbPassword);
+            this.conn = DriverManager.getConnection(URL+db+"?serverTimezone=Australia/Sydney", dbUser, dbPassword);
         }
 
         public Connection connection() throws SQLException {

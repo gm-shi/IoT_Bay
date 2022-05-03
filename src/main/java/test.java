@@ -14,18 +14,16 @@ public class test {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
         DB db = new DB();
         Connection con = db.connection();
-        User user = null;
-        String email = "gongming.shi@outlook.com";
-        String sql = "SELECT * from user where email = ?";
-        PreparedStatement statement = con.prepareStatement(sql);
-        statement.setString(1, email);
-        ResultSet resultSet = statement.executeQuery();
-        if (resultSet.next()) {
-            user = UserManager.getUser(resultSet);
-        }
-        System.out.println(user.toString());
+        String query = "DELETE FROM user_access_log WHERE user_id = ?";
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setInt(1, 8);
+        statement.execute();
 
-        statement.close();
+        //delete user
+        query = "DELETE FROM user WHERE user_id = ?";
+        statement = con.prepareStatement(query);
+        statement.setInt(1, 8);
+        statement.execute();
         con.close();
     }
 }
