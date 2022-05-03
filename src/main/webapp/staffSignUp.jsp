@@ -1,4 +1,5 @@
-<%--
+<%@ page import="uts.isd.model.User" %>
+<%@ page import="uts.isd.utils.Helper" %><%--
   Created by IntelliJ IDEA.
   User: sgm49
   Date: 18/03/2022
@@ -19,28 +20,77 @@
     <link  rel="stylesheet" href="CSS/signUP.css">
 </head>
 <body>
+<%
+    String name;
+    User user;
+    if(session.getAttribute("user") == null){
+        response.sendRedirect("index.jsp");
+    }
+    user = (User)session.getAttribute("user");
+    name = user.getUserName();
+    if(!user.getRole().equalsIgnoreCase("admin") || user.getPriorityLevel() < 10){
+        Helper.alert(response.getWriter(), "Invalid Access");
+        response.sendRedirect("index.jsp");
+    }
+
+
+%>
 <header>
     <div class="navbar navbar-light shadow-sm" style="background-color: steelblue">
         <div class="container d-flex justify-content-between">
-            <a href="index.jsp" class="navbar-brand d-flex align-items-center">
-                <img style=" width:30px; height: 30px; fill: currentColor;" src="img/shop.png" alt="logo">
-                <strong style="margin-left:5px">IoTBay</strong>
-            </a>
+            <% if (user.getRole().equalsIgnoreCase("admin"))
+            {
+            %>
+            <a href="admin.jsp" class="navbar-brand d-flex align-items-center">
+                    <%
+                            }
+                            else if (user.getRole().equalsIgnoreCase("staff")){
+                %>
+                <a href="staff.jsp" class="navbar-brand d-flex align-items-center">
+                        <%
+                        } else {
+                    %>
+                    <a href="staff.jsp" class="navbar-brand d-flex align-items-center">
+                        <%}%>
+                        <img style=" width:30px; height: 30px; fill: currentColor;" src="img/shop.png" alt="logo">
+                        <strong style="margin-left:5px">IoTBay</strong>
+                    </a>
         </div>
+
+        <div class="dropdown" >
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                <%=name%>
+            </button>
+            <div class="dropdown-menu-right dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <%
+                    if (!user.getRole().equalsIgnoreCase("admin")){
+                %>
+                <a class="dropdown-item" href="userProfile.jsp">Personal Information</a>
+                <%}%>
+                <%
+                    if (!user.getRole().equalsIgnoreCase("staff") && !user.getRole().equalsIgnoreCase("admin")){
+                %>
+                <a class="dropdown-item" href="#">Chart</a>
+                <%}%>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item"  href="LogoutController" >Log out</a>
+            </div>
+        </div>
+    </div>
     </div>
 </header>
 
 <main role="main">
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
         <form  method="post" action="UserController?action=signup">
-                <div class="form-group" >
-                    <label for="inputEmail4">Email</label>
-                    <input type="email" name="email" class="form-control" id="inputEmail4" required>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword4">Password</label>
-                    <input type="password" name="password" class="form-control" id="inputPassword4" required>
-                </div>
+            <div class="form-group" >
+                <label for="inputEmail4">Email</label>
+                <input type="email" name="email" class="form-control" id="inputEmail4" required>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword4">Password</label>
+                <input type="password" name="password" class="form-control" id="inputPassword4" required>
+            </div>
             <div class="form-group">
                 <label for="inputUserName">User Name</label>
                 <input type="text" name="username" class="form-control" id="inputUserName" required>
@@ -86,15 +136,39 @@
                 <label for="inputUserPhone">Phone Number</label>
                 <input type="text" name="phone" class="form-control" pattern="[04]{2}[0-9]{8}" value="04"  id="inputUserPhone" title=" Phone number with 04 and remaing 8 digit with 0-9" required>
             </div>
-            <div style="margin-bottom: 20px">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
-                    Agree to terms and conditions
-                </label>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="role">Position</label>
+                    <select class="custom-select" name="role" id="role">
+                        <option selected>Choose...</option>
+                        <option value="staff">Staff</option>
+                        <option value="customer">Customer</option>
+                        <option value="delivery">Delivery</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="form-group col-md-12">
+                        <label for="priorityLevel">Priority Level</label>
+                        <select class="custom-select" name="priorityLevel" id="priorityLevel">
+                            <option selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </div>
+                </div>
+
             </div>
+
             <div>
                 <button style="margin: 20px" type="submit"  class="btn btn-primary">Sign up</button>
-                <a href="index.jsp" class="btn btn-danger">Cancel</a>
+                <a href="admin.jsp" class="btn btn-danger">Cancel</a>
             </div>
 
         </form>

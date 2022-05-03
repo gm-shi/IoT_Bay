@@ -32,14 +32,14 @@
             <p class="lead" style="color: slategrey">A well-known IoT devices online shop based in ISD.</p>
         <div class="card" style="width: 600px; height:400px; margin: 20px; }">
             <div class="card-body" style="display: flex;flex-direction: column; justify-content: space-between">
-                <form method="post" action="loginHandler.jsp">
+                <form method="post" action="LoginController">
                     <div class="form-group" style="margin-top: 40px">
                         <label for="exampleInputEmail1" style="text-align: left; display: flex;">Email address</label>
-                        <input type="email" class="form-control" name="account" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label style="text-align: left; display: flex;" for="exampleInputPassword1">Password</label>
-                        <input  type="password" class="form-control" name="passwd" id="exampleInputPassword1">
+                        <input  type="password" class="form-control" name="password" id="exampleInputPassword1">
                     </div>
                     <button type="submit" class="btn btn-success btn-block">Login</button>
                 </form>
@@ -48,6 +48,7 @@
             </div>
         </div>
     </section>
+<%--testing purpose  remove later--%>
 </main>
 
 <footer class="text-muted">

@@ -12,26 +12,106 @@ public class User implements Serializable {
     private String userLastName;
     private String email;
     private String phoneNumber;
-    private int priorityLevel;
     private String password;
     private Date dob;
+    private String street;
+    private String city;
+    private String state;
+    private String postalCode;
+    private int priorityLevel = 0;
+    private String role;
+    private int paymentPreference;
+    private Date timeCreated;
 
     public User() {
     }
 
-    ;
 
-    public User(int id, String userName, String userFirstName, String userLastName, String email, String phoneNumber, int priorityLevel, String password, String dob) throws ParseException {
+
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getPaymentPreference() {
+        return paymentPreference;
+    }
+
+    public void setPaymentPreference(int paymentPreference) {
+        this.paymentPreference = paymentPreference;
+    }
+
+    public Date getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(Date timeCreated) {
+        this.timeCreated = timeCreated;
+    }
+
+    public User(int id, String userName, String userFirstName,
+                String userLastName, String email, String phoneNumber,
+                String password, Date dob, String street,
+                String city, String state, String postalCode,
+                int priorityLevel, String role, int payment_preference) {
         this.id = id;
         this.userName = userName;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.priorityLevel = priorityLevel;
         this.password = password;
-        setDob(dob);
+        this.dob = dob;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.postalCode = postalCode;
+        this.priorityLevel = priorityLevel;
+        this.role = role;
+        this.paymentPreference = payment_preference;
+
     }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
 
     public int getId() {
         return id;
@@ -41,8 +121,8 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getDob(String format) {
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
+    public String getDob() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(this.dob);
     }
 
@@ -105,6 +185,28 @@ public class User implements Serializable {
 
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", userFirstName='" + userFirstName + '\'' +
+                ", userLastName='" + userLastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", dob=" + dob +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", priorityLevel=" + priorityLevel +
+                ", role='" + role + '\'' +
+                ", paymentPreference=" + paymentPreference +
+                ", timeCreated=" + timeCreated +
+                '}';
     }
 }
 
