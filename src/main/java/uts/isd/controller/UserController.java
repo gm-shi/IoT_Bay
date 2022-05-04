@@ -5,6 +5,7 @@ import uts.isd.model.dao.UserAccessLogManager;
 import uts.isd.model.dao.UserManager;
 import uts.isd.utils.DB;
 import uts.isd.utils.Helper;
+import uts.isd.utils.Validator;
 
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -19,6 +20,7 @@ public class UserController extends HttpServlet {
     UserManager userManager;
     SimpleDateFormat dateFormat;
     UserAccessLogManager userAccessLogManager;
+    Validator validator;
 
     public UserController() throws SQLException {
         super();
@@ -26,6 +28,7 @@ public class UserController extends HttpServlet {
         userManager = new UserManager(db);
         userAccessLogManager = new UserAccessLogManager(db);
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        validator = new Validator();
     }
 
 
@@ -76,7 +79,13 @@ public class UserController extends HttpServlet {
             Helper.alert(res.getWriter(), "fail to update");
             return;
         }
-        res.sendRedirect("main.jsp");
+        if (user.getRole().equalsIgnoreCase("staff")) {
+            res.sendRedirect("staff.jsp");
+        } else if (user.getRole().equalsIgnoreCase("admin")){
+            res.sendRedirect("admin.jsp");
+        } else {
+            res.sendRedirect("main.jsp");
+        }
     }
 
     private void handleDelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -137,6 +146,13 @@ public class UserController extends HttpServlet {
             userAccessLogManager.create(userId, "sign up");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+        if (req.getSession().getAttribute("user") != null) {
+            User user1 = (User) req.getSession().getAttribute("user");
+            if (user1.getRole().equalsIgnoreCase("admin")){
+                res.sendRedirect("admin.jsp");
+                return;
+            }
         }
         res.sendRedirect("welcome.jsp");
     }

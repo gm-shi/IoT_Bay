@@ -5,6 +5,7 @@ import uts.isd.model.dao.UserAccessLogManager;
 import uts.isd.model.dao.UserManager;
 import uts.isd.utils.DB;
 import uts.isd.utils.Helper;
+import uts.isd.utils.Validator;
 
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -18,6 +19,7 @@ public class LoginController extends HttpServlet {
     SimpleDateFormat dateFormat;
     UserManager userManager;
     UserAccessLogManager userAccessLogManager;
+    Validator validator;
 
     public LoginController() throws SQLException{
         super();
@@ -25,17 +27,22 @@ public class LoginController extends HttpServlet {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         userManager = new UserManager(db);
         userAccessLogManager = new UserAccessLogManager(db);
+        validator = new Validator();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String email = req.getParameter("email");
         String passwd = req.getParameter("password");
-        if(email == null || !isValidEmailFormat(email)){
+        if(validator.checkEmpty(email, passwd)) {
+            Helper.alert(res.getWriter(), "Please enter your email or password");
+            return;
+        }
+        if(validator.validateEmail(email)){
             Helper.alert(res.getWriter(), "Wrong Email format");
             return;
         }
-        if (passwd == null || !isValidPasswordFormat(passwd)){
+        if (validator.validatePassword(passwd)){
             Helper.alert(res.getWriter(), "Wrong Password format");
             return;
         }
@@ -71,13 +78,5 @@ public class LoginController extends HttpServlet {
         } else{
             res.sendRedirect("main.jsp");
         }
-    }
-
-    private boolean isValidPasswordFormat(String passwd) {
-        return passwd.length() >= 6;
-    }
-
-    private boolean isValidEmailFormat(String email) {
-        return email.contains("@");
     }
 }
