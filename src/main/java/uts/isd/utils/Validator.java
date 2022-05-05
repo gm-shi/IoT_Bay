@@ -30,6 +30,9 @@ public class Validator implements Serializable{
         return  email.isEmpty() || password.isEmpty();
 
     }
+    public boolean checkEmpty(String content) {
+        return content.isEmpty();
+    }
 
 
     public boolean validateEmail(String email){

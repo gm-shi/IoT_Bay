@@ -144,13 +144,13 @@
                 <%
                     if (user.getRole().equalsIgnoreCase("admin")){
                 %>
-                <a href="admin.jsp" type="button" class="btn btn-danger">Back to Home</a>
+                <a href="admin.jsp" type="button" class="btn btn-primary">Back to Home</a>
                 <%} else if (user.getRole().equalsIgnoreCase("staff")){
                 %>
-                <a href="staff.jsp" type="button" class="btn btn-danger">Back to Home</a>
+                <a href="staff.jsp" type="button" class="btn btn-primary">Back to Home</a>
                 <%}else {
                 %>
-                <a href="main.jsp" type="button" class="btn btn-danger">Back to Home</a>
+                <a href="main.jsp" type="button" class="btn btn-primary">Back to Home</a>
                 <%}%>
             </div>
         </form>

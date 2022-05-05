@@ -106,7 +106,8 @@ public class UserController extends HttpServlet {
         int userId;
         String email = req.getParameter("email");
         String passwd = req.getParameter("password");
-        if(validator.checkEmpty(email, passwd)) {
+        String name = req.getParameter("username");
+        if(validator.checkEmpty(email, passwd) || validator.checkEmpty(name)) {
             Helper.alert(res.getWriter(), "Please enter your email or password");
             return;
         }
