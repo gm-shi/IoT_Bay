@@ -17,18 +17,19 @@
     <title>IoTBay - Admin</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="CSS/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
 <%
     String name;
     User user;
-    if(session.getAttribute("user") == null){
+    if (session.getAttribute("user") == null) {
         response.sendRedirect("index.jsp");
     }
-    user = (User)session.getAttribute("user");
+    user = (User) session.getAttribute("user");
     name = user.getUserName();
-    if(!user.getRole().equalsIgnoreCase("admin") || user.getPriorityLevel() < 10){
+    if (!user.getRole().equalsIgnoreCase("admin") || user.getPriorityLevel() < 10) {
         Helper.alert(response.getWriter(), "Invalid Access");
         response.sendRedirect("index.jsp");
     }
@@ -38,8 +39,7 @@
 <header>
     <div class="navbar navbar-light shadow-sm" style="background-color: steelblue">
         <div class="container d-flex justify-content-between">
-            <% if (user.getRole().equalsIgnoreCase("admin"))
-            {
+            <% if (user.getRole().equalsIgnoreCase("admin")) {
             %>
             <a href="admin.jsp" class="navbar-brand d-flex align-items-center">
                     <%
@@ -55,18 +55,19 @@
                 </a>
         </div>
         <%
-            if (user == null){
+            if (user == null) {
         %>
-        <a class="btn btn-success" style="margin-right: 10px"  href="index.jsp" >Log in</a>
+        <a class="btn btn-success" style="margin-right: 10px" href="index.jsp">Log in</a>
         <%} else {%>
-        <a class="btn btn-danger" style="margin-right: 10px"  href="LogoutController" >Log out</a>
+        <a class="btn btn-danger" style="margin-right: 10px" href="LogoutController">Log out</a>
         <%}%>
-        <div class="dropdown" >
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-expanded="false">
                 <%=name%>
             </button>
             <div class="dropdown-menu-right dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item"  href="LogoutController" >Log out</a>
+                <a class="dropdown-item" href="LogoutController">Log out</a>
             </div>
         </div>
     </div>
@@ -104,45 +105,46 @@
         </div>
     </section>
     <div class="container">
-            <div class="row row-cols-1 row-cols-md-3" style="margin: 40px">
-                <div class="col mb-4">
-                    <div class="card" style="line-height: inherit">
-                        <div class="card-body">
-                            <h5 class="card-title">Account Manage</h5>
-                            <p class="card-text">This allow you to manage your personal information, such as password, phone number and address</p>
-                            <a href="userProfile.jsp" class="btn btn-primary">Profile</a>
-                        </div>
+        <div class="row row-cols-1 row-cols-md-3" style="margin: 40px">
+            <div class="col mb-4">
+                <div class="card" style="line-height: inherit">
+                    <div class="card-body">
+                        <h5 class="card-title">Account Manage</h5>
+                        <p class="card-text">This allow you to manage your personal information, such as password, phone
+                            number and address</p>
+                        <a href="userProfile.jsp" class="btn btn-primary">Profile</a>
                     </div>
                 </div>
-                <div class="col mb-4">
-                    <div class="card" style="line-height: inherit">
-                        <div class="card-body">
-                            <h5 class="card-title">Create Staff Account</h5>
-                            <p class="card-text">This option allows you to create account</p>
-                            <a href="staffSignUp.jsp" class="btn btn-primary">Create</a>
-                        </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card" style="line-height: inherit">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Staff Account</h5>
+                        <p class="card-text">This option allows you to create account</p>
+                        <a href="staffSignUp.jsp" class="btn btn-primary">Create</a>
                     </div>
                 </div>
-                <div class="col mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Search IoT Devices</h5>
-                            <p class="card-text">You can browse IoT devices from our shop and add to your cart</p>
-                            <a href="#" class="btn btn-primary">Search</a>
-                        </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Search IoT Devices</h5>
+                        <p class="card-text">You can browse IoT devices from our shop and add to your cart</p>
+                        <a href="#" class="btn btn-primary">Search</a>
                     </div>
                 </div>
-                <div class="col mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">View Access Log</h5>
-                            <p class="card-text">You can view your access record</p>
-                            <a href="accessLog.jsp" class="btn btn-primary">View</a>
-                        </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">View Access Log</h5>
+                        <p class="card-text">You can view your access record</p>
+                        <a href="accessLog.jsp" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </main>
 
 <footer class="text-muted">
@@ -155,8 +157,14 @@
 </footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@ public class LoginController extends HttpServlet {
     UserAccessLogManager userAccessLogManager;
     Validator validator;
 
-    public LoginController() throws SQLException{
+    public LoginController() throws SQLException {
         super();
         db = new DB();
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -34,15 +34,15 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String email = req.getParameter("email");
         String passwd = req.getParameter("password");
-        if(validator.checkEmpty(email, passwd)) {
+        if (validator.checkEmpty(email, passwd)) {
             Helper.alert(res.getWriter(), "Please enter your email or password");
             return;
         }
-        if(validator.validateEmail(email)){
+        if (validator.validateEmail(email)) {
             Helper.alert(res.getWriter(), "Wrong Email format");
             return;
         }
-        if (validator.validatePassword(passwd)){
+        if (validator.validatePassword(passwd)) {
             Helper.alert(res.getWriter(), "Wrong Password format");
             return;
         }
@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
             Helper.alert(res.getWriter(), "Email does not exist");
             return;
         }
-        if (!user.getPassword().equals(passwd)){
+        if (!user.getPassword().equals(passwd)) {
             Helper.alert(res.getWriter(), "Wrong Password");
             return;
         }
@@ -71,11 +71,11 @@ public class LoginController extends HttpServlet {
         }
         req.getSession().setAttribute("user", user);
 
-        if(user.getRole().equalsIgnoreCase("staff")){
+        if (user.getRole().equalsIgnoreCase("staff")) {
             res.sendRedirect("staff.jsp");
-        } else if(user.getRole().equalsIgnoreCase("admin")){
+        } else if (user.getRole().equalsIgnoreCase("admin")) {
             res.sendRedirect("admin.jsp");
-        } else{
+        } else {
             res.sendRedirect("main.jsp");
         }
     }
