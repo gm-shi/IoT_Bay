@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 
 public class UserAccessLogManager {
-    private DB db;
+    private final DB db;
 
     public UserAccessLogManager(DB db) {
         this.db = db;
@@ -36,7 +36,7 @@ public class UserAccessLogManager {
     }
 
     public ArrayList<UserAccessLog> getUserAccessLog(int userId) throws SQLException {
-        ArrayList<UserAccessLog> userAccessLogs = new ArrayList<UserAccessLog>();
+        ArrayList<UserAccessLog> userAccessLogs = new ArrayList<>();
         String query = "SELECT * FROM user_access_log WHERE user_id = ?";
         PreparedStatement statement = conn().prepareStatement(query);
         statement.setInt(1, userId);
@@ -50,7 +50,7 @@ public class UserAccessLogManager {
     }
 
     public ArrayList<UserAccessLog> getUserAccessLogByDate(int userId, String date) throws SQLException {
-        ArrayList<UserAccessLog> userAccessLogs = new ArrayList<UserAccessLog>();
+        ArrayList<UserAccessLog> userAccessLogs = new ArrayList<>();
         String query = "SELECT * FROM user_access_log WHERE user_id = ? AND user_access_time LIKE ?";
         PreparedStatement statement = conn().prepareStatement(query);
         statement.setInt(1, userId);
