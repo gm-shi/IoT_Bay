@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="ISD Assignment">
     <meta name="author" content="Gongming Shi">
-    <title>IoTBay - XXX</title>
+    <title>IoTBay - Delete</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
@@ -51,6 +51,8 @@
             if (user == null){
         %>
         <a class="btn btn-success" style="margin-right: 10px"  href="index.jsp" >Log in</a>
+        <%} else {%>
+        <a class="btn btn-danger" style="margin-right: 10px"  href="LogoutController" >Log out</a>
         <%}%>
         <div class="dropdown" >
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">

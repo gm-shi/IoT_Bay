@@ -50,7 +50,13 @@
                         <strong style="margin-left:5px">IoTBay</strong>
                     </a>
         </div>
-
+        <%
+            if (user == null){
+        %>
+        <a class="btn btn-success" style="margin-right: 10px"  href="index.jsp" >Log in</a>
+        <%} else {%>
+        <a class="btn btn-danger" style="margin-right: 10px"  href="LogoutController" >Log out</a>
+        <%}%>
         <div class="dropdown" >
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                 <%=name%>
@@ -71,6 +77,7 @@
                 <a class="dropdown-item"  href="LogoutController" >Log out</a>
             </div>
         </div>
+
     </div>
 </header>
 <main role="main">
@@ -137,13 +144,13 @@
                 <%
                     if (user.getRole().equalsIgnoreCase("admin")){
                 %>
-                <a href="admin.jsp" type="button" class="btn btn-danger">Back to Home</a>
+                <a href="admin.jsp" type="button" class="btn btn-primary">Back to Home</a>
                 <%} else if (user.getRole().equalsIgnoreCase("staff")){
                 %>
-                <a href="staff.jsp" type="button" class="btn btn-danger">Back to Home</a>
+                <a href="staff.jsp" type="button" class="btn btn-primary">Back to Home</a>
                 <%}else {
                 %>
-                <a href="main.jsp" type="button" class="btn btn-danger">Back to Home</a>
+                <a href="main.jsp" type="button" class="btn btn-primary">Back to Home</a>
                 <%}%>
             </div>
         </form>
@@ -178,6 +185,7 @@
         editable("paymentpreference");
         editable("saveButton")
     }
+
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
