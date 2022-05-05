@@ -10,7 +10,7 @@ public class Validator implements Serializable{
 
     private String emailPattern = "/^\\S+@\\S+\\.\\S+$/";
     private String namePattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";
-    private String passwordPattern = "{4,}";
+    private String passwordPattern = "{4,}$";
 
     public Validator(){    }
 
@@ -48,7 +48,7 @@ public class Validator implements Serializable{
 
     public boolean validatePassword(String password){
 
-        return validate(passwordPattern,password);
+        return password.length() < 4;
 
     }
 }
