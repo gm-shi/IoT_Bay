@@ -56,7 +56,13 @@
                         <strong style="margin-left:5px">IoTBay</strong>
                     </a>
         </div>
-
+        <%
+            if (user == null){
+        %>
+        <a class="btn btn-success" style="margin-right: 10px"  href="index.jsp" >Log in</a>
+        <%} else {%>
+        <a class="btn btn-danger" style="margin-right: 10px"  href="LogoutController" >Log out</a>
+        <%}%>
         <div class="dropdown" >
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                 <%=name%>
