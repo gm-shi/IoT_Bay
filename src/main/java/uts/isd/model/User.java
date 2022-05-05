@@ -27,8 +27,6 @@ public class User implements Serializable {
     }
 
 
-
-
     public String getRole() {
         return role;
     }
@@ -111,7 +109,6 @@ public class User implements Serializable {
     public String getPostalCode() {
         return postalCode;
     }
-
 
     public int getId() {
         return id;

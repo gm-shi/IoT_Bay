@@ -11,7 +11,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 @WebServlet("/UserAccessController")
@@ -31,10 +30,13 @@ public class UserAccessController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String[] queries = req.getQueryString().split("=");
         String query = queries[1].toLowerCase();
-        switch(query){
-            case "search": handleSearch(req, res); break;
-            case "all": handleAll(req, res); break;
-            default: return;
+        switch (query) {
+            case "search":
+                handleSearch(req, res);
+                break;
+            case "all":
+                handleAll(req, res);
+                break;
         }
     }
 
@@ -43,7 +45,7 @@ public class UserAccessController extends HttpServlet {
         User user = (User) req.getSession().getAttribute("user");
         String date = req.getParameter("date");
         ArrayList<UserAccessLog> userAccessLogs = null;
-        try{
+        try {
             userAccessLogs = userAccessLogManager.getUserAccessLogByDate(user.getId(), date);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -56,7 +58,7 @@ public class UserAccessController extends HttpServlet {
     private void handleAll(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
         ArrayList<UserAccessLog> userAccessLogs = null;
-        try{
+        try {
             userAccessLogs = userAccessLogManager.getUserAccessLog(user.getId());
         } catch (SQLException throwables) {
             throwables.printStackTrace();

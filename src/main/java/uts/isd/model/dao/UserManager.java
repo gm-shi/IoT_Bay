@@ -16,6 +16,7 @@ public class UserManager {
     private Connection conn() throws SQLException {
         return db.connection();
     }
+
     public int create(User user) throws SQLException {
         String sqlQuery = "INSERT INTO user" +
                 " (user_name, first_name, last_name, email, " +
@@ -35,17 +36,17 @@ public class UserManager {
         statement.setString(9, user.getCity());
         statement.setString(10, user.getState());
         statement.setString(11, user.getPostalCode());
-        if (user.getPriorityLevel() != 0){
-            statement.setString(12, user.getPriorityLevel()+"");
+        if (user.getPriorityLevel() != 0) {
+            statement.setString(12, user.getPriorityLevel() + "");
         } else {
-            statement.setString(12,"1");
+            statement.setString(12, "1");
         }
         statement.setString(13, user.getRole());
-        statement.setString(14, user.getPaymentPreference()+"");
+        statement.setString(14, user.getPaymentPreference() + "");
 
         statement.executeUpdate();
         ResultSet resultSet = statement.getGeneratedKeys();
-        if (resultSet.next()){
+        if (resultSet.next()) {
             return resultSet.getInt(1);
         }
         return 0;
@@ -54,7 +55,7 @@ public class UserManager {
     public int create(String name, String firstName, String lastName, String email
             , Date dob, String phoneNumber, String password, String street
             , String city, String state, String postalCode, int privilege_num, String role)
-            throws SQLException{
+            throws SQLException {
         String query = "INSERT INTO user" +
                 " (user_name, first_name, last_name, email, " +
                 "dob, phone_number, " +
@@ -67,7 +68,7 @@ public class UserManager {
         statement.setString(3, lastName);
         statement.setString(4, email);
         statement.setString(5, String.valueOf(dob));
-        statement.setString(6, phoneNumber );
+        statement.setString(6, phoneNumber);
         statement.setString(7, password);
         statement.setString(8, street);
         statement.setString(9, city);
@@ -78,7 +79,7 @@ public class UserManager {
 
         statement.executeUpdate();
         ResultSet resultSet = statement.getGeneratedKeys();
-        if (resultSet.next()){
+        if (resultSet.next()) {
             return resultSet.getInt(1);
         }
         return 0;
@@ -104,7 +105,7 @@ public class UserManager {
         PreparedStatement statement = conn().prepareStatement(query);
         statement.setString(1, email);
         ResultSet resultSet = statement.executeQuery();
-        if (resultSet.next()){
+        if (resultSet.next()) {
             user = getUser(resultSet);
             return user;
         }
@@ -133,6 +134,7 @@ public class UserManager {
 
         return user;
     }
+
     public void update(User user) throws SQLException {
         String query = "UPDATE user SET password = ?, first_name = ?, last_name = ?, " +
                 "dob = ?, phone_number = ?, street = ?, city = ?, state = ?, postal_code = ?," +

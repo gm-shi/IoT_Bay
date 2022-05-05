@@ -56,14 +56,16 @@ public class UserTest {
         this.id = userManager.create(userName, "", "", email, new java.sql.Date(2020, 02, 02), "", password, "", "", "", "", priorityLevel, role);
         assertTrue(this.id != 0);
     }
+
     @After
-    public void cleanup() throws SQLException{
+    public void cleanup() throws SQLException {
         userManager.delete(this.id);
         User testUser = userManager.getUser(this.email);
         assertNull(testUser);
     }
+
     @Test
-    public void readUserTest() throws SQLException{
+    public void readUserTest() throws SQLException {
         User testUser = userManager.getUser(email);
         assertNotNull(testUser);
         assertEquals(testUser.getId(), this.id);
@@ -73,8 +75,9 @@ public class UserTest {
         assertEquals(testUser.getPriorityLevel(), this.priorityLevel);
 
     }
+
     @Test
-    public void updateUserTest() throws SQLException{
+    public void updateUserTest() throws SQLException {
         User testUser = userManager.getUser(email);
         testUser.setUserLastName(this.userLastName);
         userManager.update(testUser);
