@@ -28,7 +28,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="e32c8d47-4ad9-4088-9ee9-2b256a9e8139">
-      <console name="MySQLConnection" type="STANDARD" schema="iotbay" session="Main"><![CDATA[select * from item;]]></console>
+      <console name="MySQLConnection" type="STANDARD" schema="iotbay" session="Main"><![CDATA[select * from `user`;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

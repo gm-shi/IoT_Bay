@@ -36,7 +36,6 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String[] queries = req.getQueryString().split("=");
         String query = queries[1].toLowerCase();
-        System.out.println(query);
         switch(query){
             case "signup": handleSignUp(req, res); break;
             case "delete": handleDelete(req, res); break;
@@ -105,6 +104,21 @@ public class UserController extends HttpServlet {
     private void handleSignUp(HttpServletRequest req, HttpServletResponse res) throws IOException {
         User user = new User();
         int userId;
+        String email = req.getParameter("email");
+        String passwd = req.getParameter("password");
+        if(validator.checkEmpty(email, passwd)) {
+            Helper.alert(res.getWriter(), "Please enter your email or password");
+            return;
+        }
+        if(validator.validateEmail(email)){
+            Helper.alert(res.getWriter(), "Wrong Email format");
+            return;
+        }
+        if (validator.validatePassword(passwd)){
+            Helper.alert(res.getWriter(), "Password must be greater than 4 characters");
+            return;
+        }
+
         user.setEmail(req.getParameter("email"));
         user.setPassword(req.getParameter("password"));
         user.setUserName(req.getParameter("username"));
@@ -115,6 +129,8 @@ public class UserController extends HttpServlet {
         user.setCity(req.getParameter("city"));
         user.setState(req.getParameter("state"));
         user.setPostalCode(req.getParameter("postalcode"));
+
+
         if(req.getParameter("priorityLevel") != null){
             user.setPriorityLevel(Integer.parseInt(req.getParameter("priorityLevel")));
         } else {
@@ -134,7 +150,7 @@ public class UserController extends HttpServlet {
             userId = userManager.create(user);
         } catch (SQLException throwables) {
             if (throwables.getErrorCode() == 1062) {
-                Helper.alert(res.getWriter(), "email already exist"); // fix later!!!!!
+                Helper.alert(res.getWriter(), "email already exist");
             } else {
                 throwables.printStackTrace();
                 Helper.alert(res.getWriter(), "fail to Sign up" );
@@ -154,6 +170,7 @@ public class UserController extends HttpServlet {
                 return;
             }
         }
+
         res.sendRedirect("welcome.jsp");
     }
 
