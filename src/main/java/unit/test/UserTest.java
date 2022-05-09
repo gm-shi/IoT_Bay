@@ -73,7 +73,6 @@ public class UserTest {
         assertEquals(testUser.getPassword(), this.password);
         assertEquals(testUser.getRole(), this.role);
         assertEquals(testUser.getPriorityLevel(), this.priorityLevel);
-
     }
 
     @Test
