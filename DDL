@@ -29,8 +29,6 @@ CREATE TABLE `user_access_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 
-Insert admin account manually
-
 INSERT INTO user (user_name, first_name, last_name, email, dob, phone_number, password, street, city, state, postal_code, privilege_num, role, payment_preference) VALUES ('admin', 'admin', 'admin', 'admin@iot.com', '2000-01-01', '0455417000', 'admin123', '', '', '', '', 10, 'admin', 0);
 
 create table cart_item
