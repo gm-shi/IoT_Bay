@@ -48,7 +48,7 @@ public class LoginController extends HttpServlet {
         }
         handleUserLogin(email, passwd, req, res);
     }
-//
+
     private void handleUserLogin(String email, String passwd, HttpServletRequest req, HttpServletResponse res) throws IOException {
         User user = null;
         try {
