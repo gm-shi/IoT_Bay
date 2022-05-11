@@ -100,7 +100,7 @@
                 <input type="password" name="password" class="form-control" id="password" required disabled
                        value="<%=user.getPassword()%>">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="showPassword" disabled onclick="showPassword()">Show</button>
+                    <button class="btn btn-outline-secondary" type="button" id="showPasswordButton" disabled onclick="showPassword()">Show</button>
                 </div>
             </div>
             </div>
@@ -208,16 +208,16 @@
         editable("postalcode");
         editable("paymentpreference");
         editable("saveButton");
-        editable("showPassword");
+        editable("showPasswordButton");
     }
     function showPassword() {
         var x = document.getElementById("password");
         if (x.type === "password") {
             x.type = "text";
-            document.getElementById("showPassword").innerHTML = 'Hide';
+            document.getElementById("showPasswordButton").innerHTML = 'Hide';
         } else {
             x.type = "password";
-            document.getElementById("showPassword").innerHTML = 'Show';
+            document.getElementById("showPasswordButton").innerHTML = 'Show';
 
         }
     }
