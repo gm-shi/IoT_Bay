@@ -8,7 +8,7 @@ import java.sql.SQLException;
         protected String URL = "jdbc:mysql://localhost:3306/";
         protected String db = "iotbay";
         protected String dbUser = "root";
-        protected String dbPassword = "123456";
+        protected String dbPassword = "Cc990903";
         protected String dbDriver = "com.mysql.cj.jdbc.Driver";
         protected Connection conn;
 
