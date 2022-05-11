@@ -15,9 +15,8 @@
     <meta name="author" content="Gongming Shi">
     <title>IoTBay - Sign up</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/signUP.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link  rel="stylesheet" href="CSS/signUP.css">
 </head>
 <body>
 <header>
@@ -33,15 +32,15 @@
 
 <main role="main">
     <section class="jumbotron text-center" style="display: flex; flex-direction: column; align-items: center;">
-        <form method="post" action="UserController?action=signup">
-            <div class="form-group">
-                <label for="inputEmail4">Email</label>
-                <input type="email" name="email" class="form-control" id="inputEmail4" required>
-            </div>
-            <div class="form-group">
-                <label for="inputPassword4">Password</label>
-                <input type="password" name="password" class="form-control" id="inputPassword4" required>
-            </div>
+        <form  method="post" action="UserController?action=signup">
+                <div class="form-group" >
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" name="email" class="form-control" id="inputEmail4" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword4">Password</label>
+                    <input type="password" name="password" class="form-control" id="inputPassword4" required>
+                </div>
             <div class="form-group">
                 <label for="inputUserName">User Name</label>
                 <input type="text" name="username" class="form-control" id="inputUserName" required>
@@ -72,7 +71,7 @@
                 <div class="form-group col-md-4">
                     <label for="state">State</label>
                     <select class="custom-select" name="state" id="state">
-                        <option selected value="">Choose...</option>
+                        <option selected>Choose...</option>
                         <option value="NSW">NSW</option>
                         <option value="ACT">ACT</option>
                         <option value="VIC">VIC</option>
@@ -85,8 +84,7 @@
             </div>
             <div class="form-group">
                 <label for="inputUserPhone">Phone Number</label>
-                <input type="text" name="phone" class="form-control" pattern="[04]{2}[0-9]{8}" value="04"
-                       id="inputUserPhone" title=" Phone number with 04 and remaing 8 digit with 0-9" required>
+                <input type="text" name="phone" class="form-control" pattern="[04]{2}[0-9]{8}" value="04"  id="inputUserPhone" title=" Phone number with 04 and remaing 8 digit with 0-9" required>
             </div>
             <div style="margin-bottom: 20px">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -95,13 +93,14 @@
                 </label>
             </div>
             <div>
-                <button style="margin: 20px" type="submit" class="btn btn-primary">Sign up</button>
+                <button style="margin: 20px" type="submit"  class="btn btn-primary">Sign up</button>
                 <a href="index.jsp" class="btn btn-danger">Cancel</a>
             </div>
 
         </form>
     </section>
 </main>
+
 
 
 <footer class="text-muted">
@@ -112,14 +111,8 @@
         <p>IoTBay - Online Shop &copy;</p>
     </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </body>
 </html>

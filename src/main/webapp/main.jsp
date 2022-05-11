@@ -132,6 +132,16 @@
                     </div>
                 </div>
             </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Order</h5>
+                        <p class="card-text">This allows you to overview and update your order details before final
+                            submission</p>
+                        <button class="btn btn-primary" onclick="window.location='OrderMagmt.jsp'">My Order</button>
+                    </div>
+                </div>
+            </div>
             <%
                 if (user != null) {
             %>
