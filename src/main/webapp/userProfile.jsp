@@ -93,11 +93,19 @@
                 <input type="text" name="username" class="form-control" id="username" disabled required
                        value="<%=user.getUserName()%>">
             </div>
+
             <div class="form-group">
-                <label for="password">Password</label>
+                                <label for="password">Password</label>
+                <div class="input-group mb-3">
                 <input type="password" name="password" class="form-control" id="password" required disabled
                        value="<%=user.getPassword()%>">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="showPassword" disabled onclick="showPassword()">Show</button>
+                </div>
             </div>
+            </div>
+
+
 
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -199,9 +207,20 @@
         editable("state");
         editable("postalcode");
         editable("paymentpreference");
-        editable("saveButton")
+        editable("saveButton");
+        editable("showPassword");
     }
+    function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("showPassword").innerHTML = 'Hide';
+        } else {
+            x.type = "password";
+            document.getElementById("showPassword").innerHTML = 'Show';
 
+        }
+    }
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
