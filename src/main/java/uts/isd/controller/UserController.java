@@ -31,46 +31,29 @@ public class UserController extends HttpServlet {
         validator = new Validator();
     }
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String[] queries = req.getQueryString().split("=");
         String query = queries[1].toLowerCase();
-        switch(query){
-            case "signup": handleSignUp(req, res); break;
-            case "delete": handleDelete(req, res); break;
-            case "edit": handleEdit(req, res); break;
+        switch (query) {
+            case "signup":
+                handleSignUp(req, res);
+                break;
+            case "delete":
+                handleDelete(req, res);
+                break;
+            case "edit":
+                handleEdit(req, res);
+                break;
             default:
         }
     }
 
-
     private void handleEdit(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        User user =  (User) req.getSession().getAttribute("user");
+        User user = (User) req.getSession().getAttribute("user");
         user.setPassword(req.getParameter("password"));
-        user.setUserFirstName(req.getParameter("firstname"));
-        user.setUserLastName(req.getParameter("lastname"));
-        user.setPhoneNumber(req.getParameter("phone"));
-        user.setStreet(req.getParameter("street"));
-        user.setCity(req.getParameter("city"));
-        user.setState(req.getParameter("state"));
-        user.setPostalCode(req.getParameter("postalcode"));
-        if(req.getParameter("priorityLevel") != null){
-            user.setPriorityLevel(Integer.parseInt(req.getParameter("priorityLevel")));
-        } else {
-            user.setPriorityLevel(1);
-        }
-        if(req.getParameter("role") != null) {
-            user.setRole(req.getParameter("role"));
-        } else{
-            user.setRole("customer");
-        }
+        setUser(req, user);
         try {
-            user.setDob(dateFormat.parse((req.getParameter("dob"))));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        try{
             userManager.update(user);
             userAccessLogManager.create(user.getId(), "edit profile");
         } catch (SQLException throwables) {
@@ -80,7 +63,7 @@ public class UserController extends HttpServlet {
         }
         if (user.getRole().equalsIgnoreCase("staff")) {
             res.sendRedirect("staff.jsp");
-        } else if (user.getRole().equalsIgnoreCase("admin")){
+        } else if (user.getRole().equalsIgnoreCase("admin")) {
             res.sendRedirect("admin.jsp");
         } else {
             res.sendRedirect("main.jsp");
@@ -107,15 +90,15 @@ public class UserController extends HttpServlet {
         String email = req.getParameter("email");
         String passwd = req.getParameter("password");
         String name = req.getParameter("username");
-        if(validator.checkEmpty(email, passwd) || validator.checkEmpty(name)) {
+        if (validator.checkEmpty(email, passwd) || validator.checkEmpty(name)) {
             Helper.alert(res.getWriter(), "Please enter your email or password");
             return;
         }
-        if(validator.validateEmail(email)){
+        if (validator.validateEmail(email)) {
             Helper.alert(res.getWriter(), "Wrong Email format");
             return;
         }
-        if (validator.validatePassword(passwd)){
+        if (validator.validatePassword(passwd)) {
             Helper.alert(res.getWriter(), "Password must be greater than 4 characters");
             return;
         }
@@ -123,30 +106,7 @@ public class UserController extends HttpServlet {
         user.setEmail(req.getParameter("email"));
         user.setPassword(req.getParameter("password"));
         user.setUserName(req.getParameter("username"));
-        user.setUserFirstName(req.getParameter("firstname"));
-        user.setUserLastName(req.getParameter("lastname"));
-        user.setPhoneNumber(req.getParameter("phone"));
-        user.setStreet(req.getParameter("street"));
-        user.setCity(req.getParameter("city"));
-        user.setState(req.getParameter("state"));
-        user.setPostalCode(req.getParameter("postalcode"));
-
-
-        if(req.getParameter("priorityLevel") != null){
-            user.setPriorityLevel(Integer.parseInt(req.getParameter("priorityLevel")));
-        } else {
-            user.setPriorityLevel(1);
-        }
-        if(req.getParameter("role") != null) {
-            user.setRole(req.getParameter("role"));
-        } else{
-            user.setRole("customer");
-        }
-        try {
-            user.setDob(dateFormat.parse((req.getParameter("dob"))));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        setUser(req, user);
         try {
             userId = userManager.create(user);
         } catch (SQLException throwables) {
@@ -154,7 +114,7 @@ public class UserController extends HttpServlet {
                 Helper.alert(res.getWriter(), "email already exist");
             } else {
                 throwables.printStackTrace();
-                Helper.alert(res.getWriter(), "fail to Sign up" );
+                Helper.alert(res.getWriter(), "fail to Sign up");
             }
             return;
         }
@@ -166,13 +126,39 @@ public class UserController extends HttpServlet {
         }
         if (req.getSession().getAttribute("user") != null) {
             User user1 = (User) req.getSession().getAttribute("user");
-            if (user1.getRole().equalsIgnoreCase("admin")){
+            if (user1.getRole().equalsIgnoreCase("admin")) {
                 res.sendRedirect("admin.jsp");
                 return;
             }
         }
 
         res.sendRedirect("welcome.jsp");
+    }
+
+    private void setUser(HttpServletRequest req, User user) {
+        user.setUserFirstName(req.getParameter("firstname"));
+        user.setUserLastName(req.getParameter("lastname"));
+        user.setPhoneNumber(req.getParameter("phone"));
+        user.setStreet(req.getParameter("street"));
+        user.setCity(req.getParameter("city"));
+        user.setState(req.getParameter("state"));
+        user.setPostalCode(req.getParameter("postalcode"));
+
+        if (req.getParameter("priorityLevel") != null) {
+            user.setPriorityLevel(Integer.parseInt(req.getParameter("priorityLevel")));
+        } else {
+            user.setPriorityLevel(1);
+        }
+        if (req.getParameter("role") != null) {
+            user.setRole(req.getParameter("role"));
+        } else {
+            user.setRole("customer");
+        }
+        try {
+            user.setDob(dateFormat.parse((req.getParameter("dob"))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 }

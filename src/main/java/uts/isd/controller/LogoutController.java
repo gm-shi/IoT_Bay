@@ -2,10 +2,8 @@ package uts.isd.controller;
 
 import uts.isd.model.User;
 import uts.isd.model.dao.UserAccessLogManager;
-import uts.isd.model.dao.UserManager;
 import uts.isd.utils.DB;
 
-import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
@@ -16,6 +14,7 @@ public class LogoutController extends HttpServlet {
     DB db;
     UserAccessLogManager userAccessLogManager;
     User user;
+
     public LogoutController() throws SQLException {
         super();
         db = new DB();
@@ -23,9 +22,10 @@ public class LogoutController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        if(req.getSession() != null && req.getSession().getAttribute("user") != null){  //change later for guest
-            try{
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        //if is use exist redirect to log out page.
+        if (req.getSession() != null && req.getSession().getAttribute("user") != null) {  //change later for guest
+            try {
                 user = (User) req.getSession().getAttribute("user");
                 req.getSession().removeAttribute("user");
                 try {
@@ -38,7 +38,7 @@ public class LogoutController extends HttpServlet {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else  {
+        } else {
             res.sendRedirect("index.jsp");
         }
 

@@ -71,7 +71,7 @@
                 <div class="form-group col-md-4">
                     <label for="state">State</label>
                     <select class="custom-select" name="state" id="state">
-                        <option selected value="">Choose...</option>
+                        <option selected>Choose...</option>
                         <option value="NSW">NSW</option>
                         <option value="ACT">ACT</option>
                         <option value="VIC">VIC</option>
