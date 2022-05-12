@@ -167,24 +167,9 @@
         </tbody>
     </table>
     <div class="btn justify-content-end">
-        <button type="button" class="btn btn-info" >Add</button>
         <button type="button" class="btn btn-info" onclick="window.location='OrderMagmt.jsp'">Submit</button>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <footer class="text-muted">
     <div class="container">
