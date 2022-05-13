@@ -98,6 +98,16 @@ create table user_access_log
         foreign key (user_id) references user (User_id)
 );
 
+create table cart
+(
+    cart_id int auto_increment
+        primary key,
+    user_id int not null,
+    constraint cart_cart_id_uindex
+        unique (cart_id)
+);
+
+
 create table order
 (
     order_id     int auto_increment
@@ -110,3 +120,4 @@ create table order
     comment      varchar(512) null,
     cart_id      int          not null
 );
+
