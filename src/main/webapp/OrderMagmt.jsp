@@ -41,8 +41,6 @@
                 type="button" role="tab" aria-controls="nav-product" aria-selected="false">View Product</button>
         <button class="nav-link" id="nav-account-tab" data-bs-toggle="tab" data-bs-target="#nav-account"
                 type="button" role="tab" aria-controls="nav-account" aria-selected="false">Account</button>
-        <button class="nav-link" id="nav-cart-tab" data-bs-toggle="tab" data-bs-target="#nav-cart"
-                type="button" role="tab" aria-controls="nav-cart" aria-selected="false">Cart</button>
         <button class="nav-link active" id="nav-order-tab" data-bs-toggle="tab" data-bs-target="#nav-order"
                 type="button" role="tab" aria-controls="nav-order" aria-selected="true">Order</button>
         <button class="nav-link" id="nav-payment-tab" data-bs-toggle="tab" data-bs-target="#nav-payment"
@@ -68,9 +66,6 @@
     </div>
           <div class="btn-toolbar justify-content-around" role="toolbar" aria-label="Toolbar with button groups" >
               <div class="btn-group" role="group" aria-label="First group">
-                  <div class="d-grid">
-                  <button type="button" class="btn btn-info" style="position: static" onclick="window.location='MakeOrder.jsp'">New Order</button>
-                     </div>
                           <div class="space" style="width: 10px"></div>
                               <div class="input-group mb-3">
                                   <input type="text" class="form-control" placeholder="Search by Order No." aria-label="Search" aria-describedby="btnGroupAddon2">
@@ -97,8 +92,6 @@
                   <th scope="col">Date</th>
                   <th scope="col">Order No.</th>
                   <th scope="col">User</th>
-                  <th scope="col">Order Amount</th>
-                  <th scope="col">Discount</th>
                   <th scope="col">Total</th>
                   <th scope="col">Action</th>
               </tr>
@@ -108,8 +101,6 @@
             <th scope="row">01/06/2001</th>
             <td>1</td>
             <td>Sarah</td>
-            <td>20.00</td>
-            <td>0.00</td>
             <td>20.00</td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic button group">
@@ -124,8 +115,6 @@
             <td>2</td>
             <td>Sarah</td>
             <td>100.00</td>
-            <td>0.00</td>
-            <td>100.00</td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic button group">
                     <button type="button" class="btn btn-link">Update</button>
@@ -138,8 +127,6 @@
             <th scope="row">01/09/2004</th>
             <td>3</td>
             <td>Sarah</td>
-            <td>40.00</td>
-            <td>0.00</td>
             <td>40.00</td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic button group">
