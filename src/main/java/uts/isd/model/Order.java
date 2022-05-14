@@ -56,5 +56,19 @@ public class Order implements Serializable {
       public int getCartId(){return cartId;}
       public void setCartId(int cartId){this.cartId = cartId;}
 
+      @Override
+      public String toString() {
+            return "Order{" +
+                    "id=" + id +
+                    ", userId" + userId +
+                    ", paymentId" + paymentId +
+                    ", date" + date +
+                    ", trackingNumber" + trackingNum +
+                    ", status" + status +
+                    ", comment" + comment +
+                    ", cartId" + cartId +
+                    "}";
+      }
+
 
 }

@@ -117,9 +117,7 @@ create table `order`
     tracking_number int          not null,
     status          varchar(32)  null,
     comment         varchar(512) null,
-    cart_id         int          not null,
-    constraint order_order_id_uindex
-        unique (order_id)
+    cart_id         int          not null
 );
 
 

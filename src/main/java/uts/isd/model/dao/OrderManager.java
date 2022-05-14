@@ -11,7 +11,7 @@ public class OrderManager {
 
     private Connection conn() throws SQLException{return db.connection();}
 
-    public void addOrder(int order_id, int user_id, int payment_id, Date date
+    public int addOrder(int order_id, int user_id, int payment_id, Date date
             , int tracking_number, String status, String comment
             , int cart_id) throws SQLException{
         String query = "INSERT INTO order_management.`order`" +
@@ -28,6 +28,15 @@ public class OrderManager {
         statement.setString(7, comment);
         statement.setInt(8, cart_id);
 
+        statement.executeUpdate();
+        ResultSet resultSet = statement.getGeneratedKeys();
+        if (resultSet.next()) {
+            return resultSet.getInt(1);
+        }
+        return 0;
+    }
+
+    public void deleteOrder(int orderId) throws SQLException{
 
     }
 
