@@ -107,17 +107,18 @@ create table cart
         unique (cart_id)
 );
 
-
-create table order
+create table `order`
 (
-    order_id     int auto_increment
+    order_id        int auto_increment
         primary key,
-    user_id      int          not null,
-    payment_id   int          not null,
-    date         date         not null,
-    tracking_num int          null,
-    status       varchar(32)  null,
-    comment      varchar(512) null,
-    cart_id      int          not null
+    user_id         int          not null,
+    payment_id      int          not null,
+    date            date         null,
+    tracking_number int          not null,
+    status          varchar(32)  null,
+    comment         varchar(512) null,
+    cart_id         int          not null,
+    constraint order_order_id_uindex
+        unique (order_id)
 );
 
