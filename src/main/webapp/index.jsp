@@ -41,9 +41,11 @@
                                    aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
-                            <label style="text-align: left; display: flex;" for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+                            <label style="text-align: left; display: flex;" for="password">Password</label>
+                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="checkbox" onclick="showPassword()"> Show Password
                         </div>
+
                         <button type="submit" class="btn btn-success btn-block">Login</button>
                     </form>
                     <button class="btn btn-primary" onclick="window.location='signUp.jsp'">Sign up</button>
@@ -63,6 +65,22 @@
         </div>
     </footer>
 </div>
+
+
+<script>
+    function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("showPassword").innerHTML = 'Hide';
+        } else {
+            x.type = "password";
+            document.getElementById("showPassword").innerHTML = 'Show';
+
+        }
+    }
+</script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
