@@ -90,13 +90,30 @@
             <h1 style="margin-bottom: 20px">Device Collection</h1>
 
         </div>
+        <legend>Search for Devices</legend>
 
-    </section>
+            <div class="card-body">
+                <form style="text-align: center" action="device?operate=search" method="post">
+                    <div class="form-row">
+
+                        <select id="inputState" class="form-control" name="device">
+                            <option value="item_name">ItemName</option>
+                            <option value="item_location">ItemLocation</option>
+                            <option value="item_id">ItemID</option>
+
+                        </select>
+                        <input class="form-control" name="value" placeholder="Enter device">
+
+                    </div>
+                    <button style="margin-top: 10px" type="button" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+
+
 
     <table class="table table-striped" id="table">
         <thead class="thead-dark">
         <tr>
-                <th class="text-center" scope = "col">Device ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Location</th>
                 <th scope="col">Price</th>
@@ -125,29 +142,11 @@
 
         </tbody>
     </table>
-<div>
-    <fieldset>
-        <legend>Search for Devices</legend>
-        <form action="device?operate=search" method="post">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <select id="inputState" class="form-control" name="device">
-                        <option value="item_name">ItemName</option>
-                        <option value="item_location">ItemLocation</option>
-                        <option value="item_id">ItemID</option>
 
-                    </select>
-                    <input class="form-control" name="value" placeholder="Enter device">
-                </div>
-            </div>
-            <button type="button" class="btn btn-primary">Search</button>
-        </form>
-    </fieldset>
-</div>
 
             <!-- Button trigger modal -->
     <%
-        if(!user.getRole().equalsIgnoreCase("admin")  || !user.getRole().equalsIgnoreCase("staff")){
+        if(user.getRole().equalsIgnoreCase("admin")  || user.getRole().equalsIgnoreCase("staff")){
     %>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Edit
@@ -208,7 +207,7 @@
     </div>
     </div>
 <%
-    if(!user.getRole().equalsIgnoreCase("admin")  || !user.getRole().equalsIgnoreCase("staff")){
+    if(user.getRole().equalsIgnoreCase("admin")  || user.getRole().equalsIgnoreCase("staff")){
 %>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
         Add
@@ -267,8 +266,20 @@
     </div>
 
 
-    <button class="btn btn-success" onclick="window.location='main.jsp'" style=""margin-left>Back</button>
-
+        <%
+            if (user.getRole().equalsIgnoreCase("admin")) {
+        %>
+        <a href="admin.jsp" type="button" class="btn btn-primary">Back to Home</a>
+        <%
+        } else if (user.getRole().equalsIgnoreCase("staff")) {
+        %>
+        <a href="staff.jsp" type="button" class="btn btn-primary">Back to Home</a>
+        <%
+        } else {
+        %>
+        <a href="main.jsp" type="button" class="btn btn-primary">Back to Home</a>
+        <%}%>
+    </section>
 </main>
 
 <footer class="text-muted">

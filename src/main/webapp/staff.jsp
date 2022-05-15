@@ -126,7 +126,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Manage IoT devices</h5>
                         <p class="card-text">Manage Devices</p>
-                        <a href="#" class="btn btn-primary">Manage</a>
+                        <a href="deviceCollection.jsp" class="btn btn-primary">Manage</a>
                     </div>
                 </div>
             </div>

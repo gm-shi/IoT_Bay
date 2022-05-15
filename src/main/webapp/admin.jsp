@@ -128,9 +128,9 @@
             <div class="col mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Search IoT Devices</h5>
+                        <h5 class="card-title">Manage Device</h5>
                         <p class="card-text">You can browse IoT devices from our shop and add to your cart</p>
-                        <a href="#" class="btn btn-primary">Search</a>
+                        <a href="deviceCollection.jsp" class="btn btn-primary">Search</a>
                     </div>
                 </div>
             </div>
