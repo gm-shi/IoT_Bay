@@ -78,10 +78,43 @@
     </div>
 </header>
 <main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 style="margin-bottom: 20px">Device Collection</h1>
 
+        </div>
 
+    </section>
 
-
+    <table class="table table-striped" id="table">
+        <thead class="thead-dark">
+        <tr>
+                <th class="text-center" scope = "col">Device ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+                    <c:forEach items="${list}" var="item" varStatus="ids">
+                        <tr>
+                            <th scope="row">${ids.count}</th>
+                            <td>${item.item_name}</td>
+                            <td>${item.item_location}</td>
+                            <td>${item.item_price}</td>
+                            <td>${item.item_quantity}</td>
+                            <td>
+                                <input type="button" name="item_name"
+                                       onclick="editInfo(${item.item_id}" class="btn btn-warning"
+                                       value="EDIT"/>
+                                <a href="device?operate=delete&id=${item_id}"
+                                   class="btn btn-danger">DELETE</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+        </tbody>
+    </table>
 
 
 </main>
