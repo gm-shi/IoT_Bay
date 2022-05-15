@@ -101,65 +101,95 @@
 
         </tbody>
     </table>
-    <div class ="input-text col-md-3">
-        <br>
-        <button class="btn btn-success" onclick="edit()"
-                style="margin-right: 5px">EDIT</button>
-        <br>
-    </div>
-    <div class="modal-dialog modal-dialog-centered" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+
+
+
+            <!-- Button trigger modal -->
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Edit
+    </button>
+
+    <!-- Modal -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog" style="width: 500px">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">EDIT</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Device</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <div class="modal-body">
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-4 control-label">ItemID</label>
+                        <div class="col-xs-8">
+                            <input id="item_id" name="item_id" class="input-text form-control">
+                        </div>
+                    </div>
 
-            </div>
-        </div>
-        <div class="modal-body">
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-4 control-label">ItemName</label>
+                        <div class="col-xs-8">
+                            <input id="item_name" name="item_name" class="input-text form-control">
+                        </div>
+                    </div>
 
-            <div class="form-group col-xs-6">
-                <label class="col-xs-4 control-label">ItemID</label>
-                <div class="col-xs-8">
-                    <input id="item_id" name="item_id" class="input-text form-control">
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-4 control-label">ItemLocation</label>
+                        <div class="col-xs-8">
+                            <input id="item_location" name="item_location" class="input-text form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-4 control-label">ItemPricen</label>
+                        <div class="col-xs-8">
+                            <input id="item_price" name="item_price" class="input-text form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-4 control-label">ItemQuantity</label>
+                        <div class="col-xs-8">
+                            <input id="item_quantity" name="item_quantity" class="input-text form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
-
-            <div class="form-group col-xs-6">
-                <label class="col-xs-4 control-label">ItemName</label>
-                <div class="col-xs-8">
-                    <input id="item_name" name="item_name" class="input-text form-control">
-                </div>
-            </div>
-
-            <div class="form-group col-xs-6">
-                <label class="col-xs-4 control-label">ItemLocation</label>
-                <div class="col-xs-8">
-                    <input id="item_location" name="item_location" class="input-text form-control">
-                </div>
-            </div>
-
-            <div class="form-group col-xs-6">
-                <label class="col-xs-4 control-label">ItemPricen</label>
-                <div class="col-xs-8">
-                    <input id="item_price" name="item_price" class="input-text form-control">
-                </div>
-            </div>
-
-            <div class="form-group col-xs-6">
-                <label class="col-xs-4 control-label">ItemQuantity</label>
-                <div class="col-xs-8">
-                    <input id="item_quantity" name="item_quantity" class="input-text form-control">
-                </div>
-            </div>
-
-
-
         </div>
     </div>
+    </div>
+<%--    <div class ="input-text col-md-3">--%>
+<%--        <br>--%>
+<%--        <button class="btn btn-success" onclick="edit()"--%>
+<%--                style="margin-right: 5px">EDIT</button>--%>
+<%--        <br>--%>
+<%--    </div>--%>
+
+<%--        <div class="modal-dialog">--%>
+<%--            <div class="modal-content">--%>
+<%--                <div class="modal-header">--%>
+<%--                    <h3 class="modal-title" id="exampleModalLabel">EDIT</h3>--%>
+<%--                    <button type="button" class="close" data-dismiss="modal" aria-label="close">--%>
+<%--                        <span aria-hidden="true">&times;</span>--%>
+<%--                    </button>--%>
+<%--                </div>--%>
+
+<%--            </div>--%>
+<%--        </div>--%>
+
+
+
+
+
+
 
     <script type="text/javascript">
 
