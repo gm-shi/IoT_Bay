@@ -101,9 +101,78 @@
 
         </tbody>
     </table>
-    <button class="nav-link" id="nav-main-tab" data-bs-toggle="tab" data-bs-target="#nav-main"
-            type="button" role="tab" aria-controls="nav-main" aria-selected="false"
-            onclick="window.location='main.jsp'">Back</button>
+    <div class ="input-text col-md-3">
+        <br>
+        <button class="btn btn-success" onclick="edit()"
+                style="margin-right: 5px">EDIT</button>
+        <br>
+    </div>
+    <div class="modal-dialog modal-dialog-centered" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">EDIT</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group col-xs-6">
+                <label class="col-xs-4 control-label">ItemID</label>
+                <div class="col-xs-8">
+                    <input id="item_id" name="item_id" class="input-text form-control">
+                </div>
+            </div>
+
+            <div class="form-group col-xs-6">
+                <label class="col-xs-4 control-label">ItemName</label>
+                <div class="col-xs-8">
+                    <input id="item_name" name="item_name" class="input-text form-control">
+                </div>
+            </div>
+
+            <div class="form-group col-xs-6">
+                <label class="col-xs-4 control-label">ItemLocation</label>
+                <div class="col-xs-8">
+                    <input id="item_location" name="item_location" class="input-text form-control">
+                </div>
+            </div>
+
+            <div class="form-group col-xs-6">
+                <label class="col-xs-4 control-label">ItemPricen</label>
+                <div class="col-xs-8">
+                    <input id="item_price" name="item_price" class="input-text form-control">
+                </div>
+            </div>
+
+            <div class="form-group col-xs-6">
+                <label class="col-xs-4 control-label">ItemQuantity</label>
+                <div class="col-xs-8">
+                    <input id="item_quantity" name="item_quantity" class="input-text form-control">
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    function edit(){
+        $('#add').modal('show');
+    }
+
+    </script>
+
+
+
+
+    <button class="btn btn-success" onclick="window.location='main.jsp'" style=""margin-left>Back</button>
 
 </main>
 
