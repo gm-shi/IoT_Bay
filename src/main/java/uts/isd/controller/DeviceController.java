@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 @WebServlet("/DeviceController")
-public class DeviceController {
+public class DeviceController extends HttpServlet {
     DB db;
     DeviceManager dc_manager;
     String view = "deviceCollection.jsp";
@@ -25,10 +25,12 @@ public class DeviceController {
         db = new DB();
         dc_manager = new DeviceManager(db);
     }
-//    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String operate = req.getParameter("operate");
-        switch (operate){
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String[] queries = req.getQueryString().split("=");
+        String query = queries[1].toLowerCase();
+
+        switch (query){
             case"search":
                 search(req, res);
                 break;
@@ -38,9 +40,9 @@ public class DeviceController {
             case "delete":
                 delete(req, res);
                 break;
-            case "update":
-                update(req,res);
-                break;
+//            case "update":
+//                update(req,res);
+//                break;
             default:
         }
     }
@@ -63,30 +65,26 @@ public class DeviceController {
         }
     }
     private void create(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-        HttpSession session = req.getSession();
-        Object attribute = session.getAttribute("user");
+
         String item_name = req.getParameter("item_name");
         String item_location = req.getParameter("item_location");
         Double item_price = Double.valueOf(req.getParameter("item_price"));
         Integer item_quantity = Integer.valueOf(req.getParameter("item_quantity"));
         Device device = new Device(item_name, item_location, Double.valueOf(item_price), Integer.valueOf(item_quantity));
+        System.out.println(device);
         try {
-            int row = dc_manager.create(device);
-            if(row>=1){
-                req.getRequestDispatcher(view).forward(req, res);
-                return;
-            }
 
+            dc_manager.create(device);
+            res.sendRedirect("deviceCollection.jsp");
             }
             catch (SQLException e){
             e.printStackTrace();
                 Helper.alert(res.getWriter(), "Unsuccessful, please try again.");
-
         }
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-        HttpSession session = req.getSession();
+
         String x = req.getParameter("item_id");
         if(isEmpty(x)){
             Helper.alert(res.getWriter(), "ID can not be empty, please try again");
@@ -102,43 +100,43 @@ public class DeviceController {
             Helper.alert(res.getWriter(), "Unsuccessful, please try again");
         }
     }
-    private void update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-        HttpSession session = req.getSession();
-        Integer item_id = Integer.valueOf(req.getParameter("item_id"));
-        String item_name = req.getParameter("item_name");
-        String item_location = req.getParameter("item_location");
-        Double item_price = Double.valueOf(req.getParameter("item_price"));
-        Integer item_quantity = Integer.valueOf(req.getParameter("item_quantity"));
-        Device device;
-        try{
-            device = dc_manager.get(Integer.valueOf(item_id));
-            if(device==null){
-                Helper.alert(res.getWriter(), "Can not be empty, please try again");
-            }
-            if(isEmpty(item_name)){
-                device.setItemName(item_name);
-            }
-            if(isEmpty(item_location)){
-                device.setItemLocation(item_location);
-            }
-            if(isEmpty(String.valueOf(item_price))){
-                device.setItemPrice(Double.valueOf(item_price));
-            }
-            if(isEmpty(String.valueOf(item_quantity))){
-                device.setItemQuantity(Integer.valueOf(item_quantity));
-            }
-            int row = dc_manager.update(device);
-            System.out.print(row);
-            if(row>=1){
-                req.getRequestDispatcher(view).forward(req, res);
-                return;
-            }
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-            Helper.alert(res.getWriter(), "Unsuccessful, please try again");
-        }
-    }
+//    private void update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//
+//        Integer item_id = Integer.valueOf(req.getParameter("item_id"));
+//        String item_name = req.getParameter("item_name");
+//        String item_location = req.getParameter("item_location");
+//        Double item_price = Double.valueOf(req.getParameter("item_price"));
+//        Integer item_quantity = Integer.valueOf(req.getParameter("item_quantity"));
+//        Device device;
+//        try{
+//            device = dc_manager.get(Integer.valueOf(item_id));
+//            if(device==null){
+//                Helper.alert(res.getWriter(), "Can not be empty, please try again");
+//            }
+//            if(isEmpty(item_name)){
+//                device.setItemName(item_name);
+//            }
+//            if(isEmpty(item_location)){
+//                device.setItemLocation(item_location);
+//            }
+//            if(isEmpty(String.valueOf(item_price))){
+//                device.setItemPrice(Double.valueOf(item_price));
+//            }
+//            if(isEmpty(String.valueOf(item_quantity))){
+//                device.setItemQuantity(Integer.valueOf(item_quantity));
+//            }
+//            int row = dc_manager.update(device);
+//            System.out.print(row);
+//            if(row>=1){
+//                req.getRequestDispatcher(view).forward(req, res);
+//                return;
+//            }
+//        }
+//        catch(SQLException e){
+//            e.printStackTrace();
+//            Helper.alert(res.getWriter(), "Unsuccessful, please try again");
+//        }
+//    }
     private void displayList(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
         try{
             ArrayList<Device> list = dc_manager.search(null);

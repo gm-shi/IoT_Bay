@@ -11,6 +11,10 @@ public class Device {
     private Integer item_quantity;
 
     public Device(String item_name, String item_location, Double item_price, Integer item_quantity) {
+    this.item_name = item_name;
+    this.item_location = item_location;
+    this.item_price = item_price;
+    this.item_quantity = item_quantity;
     }
 
     public Device() {
