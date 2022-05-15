@@ -16,16 +16,13 @@ public class DeviceManager {
         return db.connection();
     }
     public int create(Device device) throws SQLException{
-        String sqlQuery = "INSERT INTO item" + "(item_id, item_name, item_location, item_price, vendor_id, item_description, cate_id, item_quantity)" + "VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+        String sqlQuery = "INSERT INTO item" + "(item_name, item_location, item_price, item_quantity)" + "VALUES(?, ?, ?, ?);";
         PreparedStatement statement = conn().prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, device.getItemId());
-        statement.setString(2, device.getItemName());
-        statement.setString(3, device.getItemLocation());
-        statement.setDouble(4, device.getItemPrice());
-        statement.setString(5, device.getVendorId());
-        statement.setString(6, device.getItemDescription());
-        statement.setInt(7, device.getCateId());
-        statement.setInt(8, device.getItemQuantity());
+
+        statement.setString(1, device.getItemName());
+        statement.setString(2, device.getItemLocation());
+        statement.setDouble(3, device.getItemPrice());
+        statement.setInt(4, device.getItemQuantity());
 
         statement.executeUpdate();
         return 0;
@@ -59,21 +56,38 @@ public class DeviceManager {
         return 0;
     }
 
-    public Device get(int item_id) throws SQLException{
-        String sqlQuery = "SELECT * FROM device where item_id = ?";
+//    public Device get(int item_id) throws SQLException{
+//        String sqlQuery = "SELECT * FROM device where item_id = ?";
+//        PreparedStatement statement = conn().prepareStatement(sqlQuery);
+//        statement.setInt(1, item_id);
+//        ResultSet resultSet = statement.executeQuery();
+//        while(resultSet.next()){
+//            int dbId = resultSet.getInt("item_id");
+//            String item_name = resultSet.getString("item_name");
+//            String item_location = resultSet.getString("item_location");
+//            Double item_price = resultSet.getDouble("item_price");
+//            Integer item_quantity = resultSet.getInt("item_quantity");
+//            Device a = new Device(item_name, item_location, item_price, item_quantity);
+//            return a;
+//        }
+//        return null;
+//    }
+
+    public ArrayList<Device> getAll() throws SQLException{
+        ArrayList<Device> devices = new ArrayList<>();
+        String sqlQuery = "SELECT * FROM item";
         PreparedStatement statement = conn().prepareStatement(sqlQuery);
-        statement.setInt(1, item_id);
         ResultSet resultSet = statement.executeQuery();
         while(resultSet.next()){
-            int dbId = resultSet.getInt("item_id");
             String item_name = resultSet.getString("item_name");
             String item_location = resultSet.getString("item_location");
             Double item_price = resultSet.getDouble("item_price");
             Integer item_quantity = resultSet.getInt("item_quantity");
-            Device a = new Device(item_name, item_location, item_price, item_quantity);
-            return a;
+            Device b = new Device(item_name, item_location, item_price, item_quantity);
+            devices.add(b);
+
         }
-        return null;
+        return devices;
     }
 
     public ArrayList<Device> search(Device device) throws SQLException{

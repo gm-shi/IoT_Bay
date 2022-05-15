@@ -1,5 +1,8 @@
-
-<%@ page import="uts.isd.model.User" %><%--
+<%@ page import="uts.isd.utils.DB" %>
+<%@ page import="uts.isd.model.User" %>
+<%@ page import="uts.isd.model.Device" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="uts.isd.model.dao.DeviceManager" %><%--
   Created by IntelliJ IDEA.
   User: sgm49
   Date: 18/03/2022
@@ -28,7 +31,10 @@
         user = (User) session.getAttribute("user");
         name = user.getUserName();
     }
-
+    DB db = new DB();
+    DeviceManager dc = new DeviceManager(db);
+    ArrayList<Device> devices;
+    devices = dc.getAll();
 %>
 <header>
     <div class="navbar navbar-light shadow-sm" style="background-color: steelblue; flex-wrap: nowrap;">
@@ -97,19 +103,56 @@
                 <th scope="col">Quantity</th>
         </tr>
         </thead>
+        <%
+            for (Device device : devices) {
+        %>
+        <tr>
+            <td>
+                <%=device.getItemName()%>
+            </td>
+            <td>
+                <%=device.getItemLocation()%>
+            </td>
+            <td>
+                <%=device.getItemPrice()%>
+            </td>
+            <td>
+                <%=device.getItemQuantity()%>
+            </td>
+        </tr>
+        <%}%>
         <tbody>
 
         </tbody>
     </table>
+<div>
+    <fieldset>
+        <legend>Search for Devices</legend>
+        <form action="device?operate=search" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <select id="inputState" class="form-control" name="device">
+                        <option value="item_name">ItemName</option>
+                        <option value="item_location">ItemLocation</option>
+                        <option value="item_id">ItemID</option>
 
-
+                    </select>
+                    <input class="form-control" name="value" placeholder="Enter device">
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary">Search</button>
+        </form>
+    </fieldset>
+</div>
 
             <!-- Button trigger modal -->
-
+    <%
+        if(!user.getRole().equalsIgnoreCase("admin")  || !user.getRole().equalsIgnoreCase("staff")){
+    %>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Edit
     </button>
-
+    <%}%>
     <!-- Modal -->
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -122,13 +165,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form action="DeviceController?action=update" method="post">
                 <div class="modal-body">
-                    <div class="form-group col-xs-6">
-                        <label class="col-xs-4 control-label">ItemID</label>
-                        <div class="col-xs-8">
-                            <input id="item_id" name="item_id" class="input-text form-control">
-                        </div>
-                    </div>
+
 
                     <div class="form-group col-xs-6">
                         <label class="col-xs-4 control-label">ItemName</label>
@@ -145,7 +184,7 @@
                     </div>
 
                     <div class="form-group col-xs-6">
-                        <label class="col-xs-4 control-label">ItemPricen</label>
+                        <label class="col-xs-4 control-label">ItemPrice</label>
                         <div class="col-xs-8">
                             <input id="item_price" name="item_price" class="input-text form-control">
                         </div>
@@ -157,49 +196,75 @@
                             <input id="item_quantity" name="item_quantity" class="input-text form-control">
                         </div>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
     </div>
-<%--    <div class ="input-text col-md-3">--%>
-<%--        <br>--%>
-<%--        <button class="btn btn-success" onclick="edit()"--%>
-<%--                style="margin-right: 5px">EDIT</button>--%>
-<%--        <br>--%>
-<%--    </div>--%>
+<%
+    if(!user.getRole().equalsIgnoreCase("admin")  || !user.getRole().equalsIgnoreCase("staff")){
+%>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+        Add
+    </button>
+    <%}%>
 
-<%--        <div class="modal-dialog">--%>
-<%--            <div class="modal-content">--%>
-<%--                <div class="modal-header">--%>
-<%--                    <h3 class="modal-title" id="exampleModalLabel">EDIT</h3>--%>
-<%--                    <button type="button" class="close" data-dismiss="modal" aria-label="close">--%>
-<%--                        <span aria-hidden="true">&times;</span>--%>
-<%--                    </button>--%>
-<%--                </div>--%>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog" style="width: 500px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">Add Device</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="DeviceController?action=create" method="post">
+                    <div class="modal-body">
+                        <div class="form-group col-xs-6">
+                            <label class="col-xs-4 control-label">ItemName</label>
+                            <div class="col-xs-8">
+                                <input id="item_name1" name="item_name" class="input-text form-control">
+                            </div>
+                        </div>
 
-<%--            </div>--%>
-<%--        </div>--%>
+                        <div class="form-group col-xs-6">
+                            <label class="col-xs-4 control-label">ItemLocation</label>
+                            <div class="col-xs-8">
+                                <input id="item_location1" name="item_location" class="input-text form-control">
+                            </div>
+                        </div>
 
+                        <div class="form-group col-xs-6">
+                            <label class="col-xs-4 control-label">ItemPrice</label>
+                            <div class="col-xs-8">
+                                <input id="item_price1" name="item_price" class="input-text form-control">
+                            </div>
+                        </div>
 
+                        <div class="form-group col-xs-6">
+                            <label class="col-xs-4 control-label">ItemQuantity</label>
+                            <div class="col-xs-8">
+                                <input id="item_quantity1" name="item_quantity" class="input-text form-control">
+                            </div>
+                        </div>
+                    </div>
 
-
-
-
-
-    <script type="text/javascript">
-
-    function edit(){
-        $('#add').modal('show');
-    }
-
-    </script>
-
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <button class="btn btn-success" onclick="window.location='main.jsp'" style=""margin-left>Back</button>
