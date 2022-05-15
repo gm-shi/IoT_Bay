@@ -10,6 +10,13 @@ public class Device {
     private Integer cate_id;
     private Integer item_quantity;
 
+    public Device(String item_name, String item_location, Double item_price, Integer item_quantity) {
+    }
+
+    public Device() {
+
+    }
+
     public Integer getItemId(){
         return item_id;
     }

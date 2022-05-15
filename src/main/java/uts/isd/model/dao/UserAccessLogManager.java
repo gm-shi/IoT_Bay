@@ -34,7 +34,7 @@ public class UserAccessLogManager {
         }
         return 0;
     }
-
+//
     public ArrayList<UserAccessLog> getUserAccessLog(int userId) throws SQLException {
         ArrayList<UserAccessLog> userAccessLogs = new ArrayList<>();
         String query = "SELECT * FROM user_access_log WHERE user_id = ?";
