@@ -25,11 +25,8 @@ public class DeviceController {
         db = new DB();
         dc_manager = new DeviceManager(db);
     }
-
 //    @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
-        res.setContentType("text/html;charset=utf-8");
         String operate = req.getParameter("operate");
         switch (operate){
             case"search":

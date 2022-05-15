@@ -118,7 +118,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Search IoT Devices</h5>
                         <p class="card-text">You can browse IoT devices from our shop and add to your cart</p>
-                        <a href="#" class="btn btn-primary">Search</a>
+<%--                        <a href="#" class="btn btn-primary">Search</a>--%>
+                        <button class="btn btn-primary" onclick="window.location='deviceCollection.jsp'">Search</button>
                     </div>
                 </div>
             </div>

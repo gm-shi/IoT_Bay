@@ -1,3 +1,4 @@
+
 <%@ page import="uts.isd.model.User" %><%--
   Created by IntelliJ IDEA.
   User: sgm49
@@ -97,25 +98,12 @@
         </tr>
         </thead>
         <tbody>
-                    <c:forEach items="${list}" var="item" varStatus="ids">
-                        <tr>
-                            <th scope="row">${ids.count}</th>
-                            <td>${item.item_name}</td>
-                            <td>${item.item_location}</td>
-                            <td>${item.item_price}</td>
-                            <td>${item.item_quantity}</td>
-                            <td>
-                                <input type="button" name="item_name"
-                                       onclick="editInfo(${item.item_id}" class="btn btn-warning"
-                                       value="EDIT"/>
-                                <a href="device?operate=delete&id=${item_id}"
-                                   class="btn btn-danger">DELETE</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
+
         </tbody>
     </table>
-
+    <button class="nav-link" id="nav-main-tab" data-bs-toggle="tab" data-bs-target="#nav-main"
+            type="button" role="tab" aria-controls="nav-main" aria-selected="false"
+            onclick="window.location='main.jsp'">Back</button>
 
 </main>
 
