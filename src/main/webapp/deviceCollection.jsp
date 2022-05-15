@@ -1,4 +1,4 @@
-
+<%@ page import="uts.isd.utils.DB" %>
 <%@ page import="uts.isd.model.User" %><%--
   Created by IntelliJ IDEA.
   User: sgm49
@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,7 +144,7 @@
             </div>
 
             <div class="form-group col-xs-6">
-                <label class="col-xs-4 control-label">ItemPricen</label>
+                <label class="col-xs-4 control-label">ItemPrice</label>
                 <div class="col-xs-8">
                     <input id="item_price" name="item_price" class="input-text form-control">
                 </div>
@@ -161,7 +162,7 @@
         </div>
     </div>
 
-    <script type="text/javascript">
+    <script>
 
     function edit(){
         $('#add').modal('show');
