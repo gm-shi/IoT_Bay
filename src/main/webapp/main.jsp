@@ -129,7 +129,7 @@
                         <h5 class="card-title">Cart</h5>
                         <p class="card-text">This allows you to check items that in your cart, you can delete item and
                             check out</p>
-                        <a href="#" class="btn btn-primary">My Cart</a>
+                        <a href="#" class="btn btn-primary" onclick="window.location='cart.jsp'">My Cart</a>
                     </div>
                 </div>
             </div>
