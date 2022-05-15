@@ -3,13 +3,13 @@ package uts.isd.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+//
 public class DB {
     // !adjust these para according to your setting
     protected String URL = "jdbc:mysql://localhost:3306/";
-    protected String db = "devicedb";
+    protected String db = "iotbay";
     protected String dbUser = "root";
-    protected String dbPassword = "Ashin05281!";
+    protected String dbPassword = "123456";
     protected String dbDriver = "com.mysql.cj.jdbc.Driver";
     protected Connection conn;
 
