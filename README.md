@@ -7,4 +7,5 @@ ISD Assignment 2
 13732591
 
 1. deploy using tomcat 9.x
-2. change DB
+2. change DB.java setting to your own local Mysql settings  
+3. using DDL.sql to create tables
